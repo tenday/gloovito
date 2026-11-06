@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLOOVITO V2 — Pre-Lancio Kickstarter | Kinetic Cinema Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- 35MM FILM GRAIN & CUSTOM MAGNETIC CURSOR -->
+  <div class="film-grain"></div>
+  <div class="cinema-cursor" id="cinema-cursor"></div>
+
+  <!-- TOP KICKSTARTER PRE-LAUNCH BANNER -->
+  <div class="drop-banner">
+    <span><span class="drop-pulse"></span>IN ARRIVO SU KICKSTARTER // UNISCITI AI PRIMI 500 FOUNDING BACKERS (<span id="top-backer-count">342</span> GIÀ ISCRITTI)</span>
+    <span class="hide-mobile">ISCRIZIONE GRATUITA OGGI • SBLOCCA IL 35% DI SCONTO SUPER EARLY BIRD AL LANCIO</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="topbar">
+    <a href="#top" class="topbar-brand">
+      <span class="linea-rossa-mark"></span>
+      GLOOVITO
+    </a>
+
+    <div class="topbar-nav">
+      <ul class="nav-items">
+        <li><a href="#modelli-dual">01 / Modelli</a></li>
+        <li><a href="#swap-section">02 / Swap Magnetico</a></li>
+        <li><a href="#esperienza">03 / Demo Gesti</a></li>
+        <li><a href="#ecosistema">04 / Flat-Lay 2-in-1</a></li>
+        <li><a href="#roadmap">05 / Vota &amp; Roadmap</a></li>
+        <li><a href="#rewards">06 / Kickstarter</a></li>
+      </ul>
+      <div class="ks-badge-pill">
+        <span class="ks-dot"></span>
+        <span>REV. 02 // PRE-LANCIO KICKSTARTER</span>
+      </div>
+    </div>
+
+    <div class="topbar-cta">
+      <button class="sound-toggle" id="sound-btn" title="Attiva Feedback Sonoro Tattile">
+        <span class="sound-bars"><span></span><span></span><span></span></span>
+        <span id="sound-label">SUONO OFF</span>
+      </button>
+      <a href="#rewards" class="cta-link-raw">DIVENTA BACKER (-35%)</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= STICKY CINEMA HERO WITH MODEL CALLOUT ================= -->
+    <section class="hero-scroll-wrapper" id="hero-wrapper">
+      <div class="hero-sticky-frame">
+        <div class="hero-cinema-backdrop">
+          <div class="hero-media-frame" id="hero-media"></div>
+        </div>
+
+        <!-- MODEL CALLOUT BADGE ON HERO IMAGE -->
+        <div class="hero-model-callout">
+          <span class="hm-tag">MODEL SHOWN IN FRAME // 01</span>
+          <span class="hm-name">GLOOVITO URBAN-01</span>
+          <span class="hm-spec">+ CAPSULA GLOOVITO POD-S1 (Ø 28MM TITANIO)</span>
+        </div>
+
+        <div class="hero-grid-overlay">
+          <div class="hero-meta-strip">
+            <div class="hero-meta-cell">CAMPAGNA CROWDFUNDING // KICKSTARTER</div>
+            <div class="hero-meta-cell">MODELLI: URBAN-01 / ALPINE-PRO / POD-S1</div>
+            <div class="hero-meta-cell">ARCHITETTURA: ZERO FILI NELLE DITA</div>
+            <div class="hero-meta-cell">ACCESSO FONDATORI: 0 € OGGI</div>
+          </div>
+
+          <div class="hero-center-stage">
+            <div class="hero-kicker">PROSSIMO LANCIO SU KICKSTARTER — UNISCITI AI FONDATORI</div>
+            <h1 class="hero-mega-title" id="hero-title">
+              MAI PIÙ DITA GHIACCIATE<br />
+              <em>per cambiare canzone.</em>
+            </h1>
+            <p class="hero-subcopy">
+              Stiamo portando in vita <strong>Gloovito</strong>: il primo sistema modulare composto dai guanti termici <strong>URBAN-01</strong> e <strong>ALPINE-PRO</strong> e dalla capsula magnetica in titanio <strong>GLOOVITO POD-S1</strong>. Comanda musica, chiamate e GoPro tenendo la mano chiusa nella tasca del cappotto o stretta sui bastoncini da sci.
+            </p>
+            <div class="hero-actions-inline">
+              <a href="#rewards" class="btn-hero-primary">BLOCCA IL POSTO SUPER EARLY BIRD (-35%)</a>
+              <a href="#swap-section" class="btn-hero-ghost">GUARDA LO SWAP MAGNETICO</a>
+            </div>
+          </div>
+
+          <div class="hero-bottom-bar">
+            <div class="hero-bottom-cell">
+              <span class="stat-big">URBAN-01</span>
+              <span class="stat-caption">GUANTO SOFTSHELL &amp; MERINO PER CITTÀ E PENDOLARISMO (-5°C)</span>
+            </div>
+            <div class="hero-bottom-cell">
+              <span class="stat-big">ALPINE-PRO</span>
+              <span class="stat-caption">GUANTO CORAZZATO IN PELLE E GORE-TEX PER SCI E ALTA QUOTA (-20°C)</span>
+            </div>
+            <div class="hero-bottom-cell">
+              <span class="stat-big">POD-S1</span>
+              <span class="stat-caption">CAPSULA INERZIALE DA 28MM TRASFERIBILE IN 2 SECONDI TRA I DUE GUANTI</span>
+            </div>
+            <div class="hero-bottom-cell">
+              <span class="stat-big">-100 €</span>
+              <span class="stat-caption">SCONTO SUL FUTURO PREZZO RETAIL PER I PRIMI 250 SOSTENITORI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFINITE KINETIC MARQUEE ================= -->
+    <div class="kinetic-marquee">
+      <div class="marquee-track">
+        GLOOVITO URBAN-01 <strong>//</strong> GLOOVITO ALPINE-PRO <strong>//</strong> CAPSULA GLOOVITO POD-S1 <strong>//</strong> ZERO FILI CUCITI NELLE DITA <strong>//</strong> FUNZIONA A TELEFONO BLOCCATO IN TASCA <strong>//</strong> IN ARRIVO SU KICKSTARTER <strong>//</strong>
+        GLOOVITO URBAN-01 <strong>//</strong> GLOOVITO ALPINE-PRO <strong>//</strong> CAPSULA GLOOVITO POD-S1 <strong>//</strong> ZERO FILI CUCITI NELLE DITA <strong>//</strong> FUNZIONA A TELEFONO BLOCCATO IN TASCA <strong>//</strong> IN ARRIVO SU KICKSTARTER <strong>//</strong>
+      </div>
+    </div>
+
+    <!-- ================= 01 / I DUE MODELLI CON NOME STAMPATO SULLE IMMAGINI ================= -->
+    <section class="grid-section" id="modelli-dual">
+      <div class="section-index-bar">
+        <div><span class="index-num">01</span> // I DUE MODELLI</div>
+        <div>PASSA IL MOUSE SULLE IMMAGINI PER ESPLORARE I MODELLI URBAN-01 E ALPINE-PRO IN 3D</div>
+        <div>KINETIC TILT 3D</div>
+      </div>
+
+      <div class="split-manifesto">
+        <!-- MODELLO 1: GLOOVITO URBAN-01 -->
+        <div class="manifesto-col reveal-up">
+          <div class="branded-visual scenario-frame tilt-card shutter-reveal">
+            <img src="assets/urban-01-studio.jpg" alt="GLOOVITO URBAN-01 con Capsula POD-S1" />
+            <div class="img-model-watermark">
+              <div class="watermark-code">
+                <span>SERIE CITTÀ // EVERYDAY COLD</span>
+                GLOOVITO URBAN-01
+              </div>
+              <div class="watermark-telemetry">TEMP: -5°C // 120 GG/ANNO</div>
+            </div>
+            <div class="img-model-plate">
+              <div>
+                <div class="plate-model-name">MODELLO: GLOOVITO URBAN-01</div>
+                <div class="plate-model-sub">SOFTSHELL ANTIVENTO + LANA MERINO + INNESTO POD-S1</div>
+              </div>
+              <span class="plate-badge">REWARD 129 €</span>
+            </div>
+          </div>
+
+          <h2 class="editorial-h2">
+            <strong>URBAN-01</strong>: cuffie sotto il berretto, <em>mani nel cappotto</em>.
+          </h2>
+          <p class="editorial-body">
+            Progettato per i 120 giorni d'inverno in città: quando cammini al freddo con gli auricolari nascosti sotto il cappello di lana e lo smartphone chiuso nel piumino, ti basta un doppio tocco delle dita <strong>direttamente dentro la tasca del cappotto</strong> per mettere in pausa, cambiare traccia o rispondere a una chiamata.
+          </p>
+
+          <dl class="specs-list">
+            <div class="specs-row">
+              <dt>CODICE MODELLO</dt>
+              <dd>GLV-URBAN-01 (Profilo Slim Sartoriale Antivento)</dd>
+            </div>
+            <div class="specs-row">
+              <dt>ISOLAMENTO</dt>
+              <dd>Fodera termica PrimaLoft Gold + interno morbido senza cavi nelle dita</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- MODELLO 2: GLOOVITO ALPINE-PRO -->
+        <div class="manifesto-col reveal-up">
+          <div class="branded-visual scenario-frame tilt-card shutter-reveal">
+            <img src="assets/alpine-pro-action.jpg" alt="GLOOVITO ALPINE-PRO sulle Piste da Sci" />
+            <div class="img-model-watermark">
+              <div class="watermark-code">
+                <span>SERIE ALTA QUOTA // EXTREME SKI</span>
+                GLOOVITO ALPINE-PRO
+              </div>
+              <div class="watermark-telemetry">TEMP: -20°C // SICURA PISTA</div>
+            </div>
+            <div class="img-model-plate">
+              <div>
+                <div class="plate-model-name">MODELLO: GLOOVITO ALPINE-PRO</div>
+                <div class="plate-model-sub">PELLE ARTICOLATA + MEMBRANA GORE-TEX + INNESTO POD-S1</div>
+              </div>
+              <span class="plate-badge">REWARD 169 €</span>
+            </div>
+          </div>
+
+          <h2 class="editorial-h2">
+            <strong>ALPINE-PRO</strong>: domina la pista e la GoPro <em>a -20°C</em>.
+          </h2>
+          <p class="editorial-body">
+            Arriva il weekend sulla neve: sganci la capsula <strong>POD-S1</strong> dal tuo guanto Urban e la innesti su <strong>GLOOVITO ALPINE-PRO</strong>. Mentre stringi i bastoncini in discesa la <em>Sicura Intelligente</em> blocca i tocchi involontari; in seggiovia o in cresta fai un triplo tocco di sblocco per comandare musica, chiamate e GoPro sul casco.
+          </p>
+
+          <dl class="specs-list">
+            <div class="specs-row">
+              <dt>CODICE MODELLO</dt>
+              <dd>GLV-ALPINE-PRO (Corazzato Impermeabile Alta Quota)</dd>
+            </div>
+            <div class="specs-row">
+              <dt>CONTROLLO ACTION CAM</dt>
+              <dd>Trigger Bluetooth diretto per GoPro e Insta360 + Batteria -20°C</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 / INTERACTIVE MAGNETIC POD SWAP STAGE ================= -->
+    <section class="grid-section" id="swap-section">
+      <div class="section-index-bar">
+        <div><span class="index-num">02</span> // ANIMAZIONE SWAP MAGNETICO</div>
+        <div>UNA SOLA CAPSULA IN TITANIO (POD-S1) CHE SI SPOSTA IN 2 SECONDI TRA I DUE GUANTI</div>
+        <div>CLICCA PER ESEGUIRE LO SWAP</div>
+      </div>
+
+      <div class="swap-theatre reveal-up">
+        <div class="swap-header-row">
+          <div>
+            <div class="hero-kicker" style="margin-bottom: 10px;">ARCHITETTURA MODULARE CLICK &amp; SWAP</div>
+            <h2 class="editorial-h2" style="margin-bottom: 0;">
+              Guarda il <strong>POD-S1</strong> passare da <em>URBAN-01</em> ad <em>ALPINE-PRO</em>.
+            </h2>
+          </div>
+          <button class="btn-hero-primary" id="btn-trigger-swap">
+            ⇄ ESEGUI SWAP MAGNETICO DEL POD
+          </button>
+        </div>
+
+        <canvas id="swap-canvas" width="1380" height="320"></canvas>
+
+        <div class="swap-controls-bar">
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--bone-dim);">
+            STATO ATTUALE CAPSULA: <strong style="color:var(--signal);" id="swap-status-text">INNESTATO SU GLOOVITO URBAN-01 (PROFILO CITTÀ ATTIVO)</strong>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--stone);">
+            SUGGERIMENTO: CLICCA SUL PULSANTE O DIRETTAMENTE SULLA CAPSULA PER TRASFERIRLA
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 / SIMULATORE CONCEPT INTERATTIVO ================= -->
+    <section class="grid-section" id="esperienza">
+      <div class="section-index-bar">
+        <div><span class="index-num">03</span> // DEMO INTERATTIVA</div>
+        <div>PROVA I 5 GESTI DELLA CAPSULA GLOOVITO POD-S1</div>
+        <div>CLICCA SUI GESTI O PREMI 1–5</div>
+      </div>
+
+      <div class="hardware-workbench">
+        <div class="pod-cad-stage reveal-up">
+          <div style="width:100%; display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.7rem; color:var(--stone);">
+            <span>MODELLO: GLOOVITO POD-S1 (Ø 28MM TITANIO)</span>
+            <span id="cad-angle-readout">MUOVI IL MOUSE SULLA GHIERA</span>
+          </div>
+
+          <canvas id="pod-hardware-canvas" width="520" height="420"></canvas>
+
+          <div class="cad-caption-bar">
+            <span>PESO TARGET: 11 G // VIBRAZIONE APTICA // ZERO FILI NELLE DITA</span>
+            <span>GRADO DI PROTEZIONE: IP67</span>
+          </div>
+        </div>
+
+        <div class="gesture-panel reveal-up">
+          <div>
+            <div class="hero-kicker" style="margin-bottom: 10px;">PROTOCOLLO NATIVO BLUETOOTH HID</div>
+            <h3 class="editorial-h2" style="font-size: 2.25rem; margin-bottom: 12px;">
+              Prova i 5 comandi.<br /><em>Funziona a schermo bloccato.</em>
+            </h3>
+            <p class="editorial-body" style="font-size: 0.95rem; margin-bottom: 14px;">
+              Poiché il <strong>POD-S1</strong> utilizza il protocollo Bluetooth HID nativo, iPhone e Android eseguono i tuoi ordini <strong>anche quando il telefono è bloccato in fondo alla tasca</strong>. Clicca su un gesto:
+            </p>
+
+            <div class="te-switch-grid">
+              <button class="te-key active" data-cmd="play">
+                <span class="te-key-num">01</span>
+                <span>
+                  <span class="te-key-title">Doppio Tocco Pollice e Indice</span>
+                  <span class="te-key-sub">Mette in pausa o avvia musica e podcast in cuffia</span>
+                </span>
+                <span class="te-key-code">Play / Pausa</span>
+              </button>
+
+              <button class="te-key" data-cmd="next">
+                <span class="te-key-num">02</span>
+                <span>
+                  <span class="te-key-title">Sfiora l'Indice con il Pollice</span>
+                  <span class="te-key-sub">Passa subito al brano successivo nella tua playlist</span>
+                </span>
+                <span class="te-key-code">Brano Succ.</span>
+              </button>
+
+              <button class="te-key" data-cmd="vol">
+                <span class="te-key-num">03</span>
+                <span>
+                  <span class="te-key-title">Rotazione Leggera del Polso</span>
+                  <span class="te-key-sub">Alza o abbassa il volume tramite il giroscopio a 6 assi</span>
+                </span>
+                <span class="te-key-code">Volume + / -</span>
+              </button>
+
+              <button class="te-key" data-cmd="call">
+                <span class="te-key-num">04</span>
+                <span>
+                  <span class="te-key-title">Doppio Tocco Pollice e Medio</span>
+                  <span class="te-key-sub">Risponde a una chiamata in arrivo direttamente negli auricolari</span>
+                </span>
+                <span class="te-key-code">Chiamate</span>
+              </button>
+
+              <button class="te-key" data-cmd="clutch">
+                <span class="te-key-num">05</span>
+                <span>
+                  <span class="te-key-title">Triplo Tocco Sblocco + Pressione Lunga</span>
+                  <span class="te-key-sub">Sblocca la sicura da pista e avvia la ripresa su GoPro</span>
+                </span>
+                <span class="te-key-code">Sicura + GoPro</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="te-monitor">
+            <div class="te-monitor-top">
+              <span>RISPOSTA TELEFONO IN TASCA (SIMULAZIONE)</span>
+              <span id="monitor-latency">ZERO APP IN BACKGROUND</span>
+            </div>
+            <div class="te-monitor-main">
+              <span class="te-monitor-action" id="monitor-action">Spotify: Pausa / Riproduzione avviata nelle cuffie</span>
+              <span class="te-monitor-state" id="monitor-code">VIBRAZIONE SINGOLA</span>
+            </div>
+            <canvas id="imu-oscillograph" width="540" height="58"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 / FLAT-LAY ECOSISTEMA 2-IN-1 CON NOMI MODELLO ================= -->
+    <section class="grid-section" id="ecosistema">
+      <div class="section-index-bar">
+        <div><span class="index-num">04</span> // ECOSISTEMA 2-IN-1</div>
+        <div>VISTA ARCHITETTONICA DEL FOUNDER PACK: URBAN-01 + POD-S1 + ALPINE-PRO</div>
+        <div>ZERO FILI NELLE DITA</div>
+      </div>
+
+      <div class="pod-feature-banner">
+        <div class="branded-visual pod-photo-cell tilt-card shutter-reveal">
+          <img src="assets/pack-2in1-flatlay.jpg" alt="GLOOVITO ALL-WINTER 2-IN-1 FLATLAY" />
+          <div class="img-model-watermark">
+            <div class="watermark-code">
+              <span>SISTEMA MODULARE COMPLETO</span>
+              URBAN-01 + POD-S1 + ALPINE-PRO
+            </div>
+            <div class="watermark-telemetry">FOUNDER PACK 2-IN-1</div>
+          </div>
+          <div class="img-model-plate">
+            <div>
+              <div class="plate-model-name">ECOSISTEMA: GLOOVITO ALL-WINTER 2-IN-1</div>
+              <div class="plate-model-sub">SX: URBAN-01 // CENTRO: CAPSULA POD-S1 + USB-C // DX: ALPINE-PRO</div>
+            </div>
+            <span class="plate-badge">SCONTO -100 €</span>
+          </div>
+        </div>
+
+        <div class="pod-copy-cell reveal-up">
+          <div class="hero-kicker" style="margin-bottom: 12px;">PERCHÉ I VECCHI GUANTI SMART SI ROMPEVANO</div>
+          <h2 class="editorial-h2">
+            Zero fili nelle dita.<br /><em>Indistruttibile e lavabile al 100%.</em>
+          </h2>
+          <p class="editorial-body">
+            Guarda la fotografia qui a fianco: entrambi i guanti (<strong>URBAN-01</strong> a sinistra e <strong>ALPINE-PRO</strong> a destra) ospitano sul dorso un anello magnetico passivo. Non c'è <strong>nessun filo elettrico cucito lungo le dita</strong> che possa irrigidire la mano o spezzarsi stringendo i bastoncini da sci.
+          </p>
+          <p class="editorial-body" style="margin-bottom: 0;">
+            Tutta la tecnologia risiede nella capsula centrale <strong>GLOOVITO POD-S1</strong>: la sganci in un istante per lavare i guanti in lavatrice, ricaricarla sul comodino via USB-C o spostarla dal guanto da città a quello da montagna.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 / ROADMAP & SONDAGGIO CO-CREAZIONE BACKER ================= -->
+    <section class="grid-section" id="roadmap">
+      <div class="section-index-bar">
+        <div><span class="index-num">05</span> // ROADMAP &amp; CO-CREAZIONE</div>
+        <div>A CHE PUNTO SIAMO OGGI E COME PUOI VOTARE LE FUNZIONI DELLA SERIE 01</div>
+        <div>COSTRUITO CON I BACKER</div>
+      </div>
+
+      <div class="roadmap-poll-split">
+        <div class="roadmap-col reveal-up">
+          <div class="hero-kicker" style="margin-bottom: 12px;">TRASPARENZA TOTALE</div>
+          <h2 class="editorial-h2" style="font-size: 2.3rem;">
+            La nostra Roadmap verso il <em>lancio Kickstarter</em>.
+          </h2>
+          <p class="editorial-body" style="font-size: 0.95rem;">
+            Questo progetto nasce insieme alla sua community. Iscrivendoti gratuitamente oggi segui dietro le quinte ogni test del prototipo e blocchi il prezzo riservato ai primi 250 fondatori.
+          </p>
+
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <span class="tl-phase active">● FASE 01 (OGGI)</span>
+              <div>
+                <div class="tl-title">Ingegneria Concept &amp; Primi 500 Founding Backers</div>
+                <div class="tl-desc">Definizione architettura POD-S1 (BLE HID + IMU 6-assi), design URBAN-01 / ALPINE-PRO e voto funzioni community.</div>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="tl-phase">FASE 02</span>
+              <div>
+                <div class="tl-title">Prototipo Funzionante &amp; Video Dimostrativo Reale</div>
+                <div class="tl-desc">Test su banco e su pista del prototipo nRF52840 e condivisione dei video non editati con tutti gli iscritti VIP.</div>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="tl-phase">FASE 03</span>
+              <div>
+                <div class="tl-title">Apertura Campagna Ufficiale Kickstarter</div>
+                <div class="tl-desc">Invio del link segreto agli iscritti 24h prima del lancio per assicurarsi i pacchetti Super Early Bird (-35%).</div>
+              </div>
+            </li>
+            <li class="timeline-item" style="border-bottom: none;">
+              <span class="tl-phase">FASE 04</span>
+              <div>
+                <div class="tl-title">Stampi Industriali, Certificazione &amp; Spedizione</div>
+                <div class="tl-desc">Avvio produzione del primo lotto con i fondi raccolti e scelta della taglia esatta prima della consegna.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="poll-col reveal-up">
+          <div class="hero-kicker" style="margin-bottom: 12px;">SONDAGGIO LIVE FOUNDING BACKERS</div>
+          <h2 class="editorial-h2" style="font-size: 2.3rem;">
+            Quale funzione userai di più?<br /><em>Clicca per votare.</em>
+          </h2>
+          <p class="editorial-body" style="font-size: 0.95rem;">
+            Aiutaci a dare priorità alle funzioni del primo firmware di <strong>GLOOVITO POD-S1</strong>:
+          </p>
+
+          <div class="poll-options">
+            <button class="poll-btn" onclick="castVote(0)">
+              <div class="poll-bar" style="width: 44%;" id="pbar-0"></div>
+              <div class="poll-content">
+                <span>1. Controllare Spotify / Musica tenendo la mano in tasca al freddo</span>
+                <span class="poll-pct" id="ppct-0">44% (151 voti)</span>
+              </div>
+            </button>
+
+            <button class="poll-btn" onclick="castVote(1)">
+              <div class="poll-bar" style="width: 28%;" id="pbar-1"></div>
+              <div class="poll-content">
+                <span>2. Rispondere alle chiamate in seggiovia o camminando senza sfilare i guanti</span>
+                <span class="poll-pct" id="ppct-1">28% (96 voti)</span>
+              </div>
+            </button>
+
+            <button class="poll-btn" onclick="castVote(2)">
+              <div class="poll-bar" style="width: 19%;" id="pbar-2"></div>
+              <div class="poll-content">
+                <span>3. Avviare e fermare i video su GoPro / Insta360 montata sul casco</span>
+                <span class="poll-pct" id="ppct-2">19% (64 voti)</span>
+              </div>
+            </button>
+
+            <button class="poll-btn" onclick="castVote(3)">
+              <div class="poll-bar" style="width: 9%;" id="pbar-3"></div>
+              <div class="poll-content">
+                <span>4. Funzione Walkie-Talkie vocale rapido tra amici sulle piste da sci</span>
+                <span class="poll-pct" id="ppct-3">9% (31 voti)</span>
+              </div>
+            </button>
+          </div>
+
+          <div id="poll-thanks" style="display:none; margin-top:18px; font-family:var(--font-mono); font-size:0.76rem; color:var(--signal);">
+            ✓ GRAZIE! IL TUO VOTO È STATO REGISTRATO. PRENOTA ORA IL TUO REWARD QUI SOTTO A 0 €.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 / KICKSTARTER REWARD TIERS CON MINIATURE BRANDIZZATE ================= -->
+    <section class="grid-section" id="rewards">
+      <div class="section-index-bar">
+        <div><span class="index-num">06</span> // REWARD KICKSTARTER</div>
+        <div>BLOCCA OGGI A 0 € IL TUO POSTO SUPER EARLY BIRD PER IL GIORNO DEL LANCIO</div>
+        <div>NESSUN PAGAMENTO OGGI</div>
+      </div>
+
+      <div class="tiers-row">
+        <!-- REWARD 1: URBAN-01 -->
+        <div class="tier-col reveal-up">
+          <div>
+            <div class="branded-visual tier-thumb tilt-card">
+              <img src="assets/urban-01-studio.jpg" alt="GLOOVITO URBAN-01" />
+              <div class="img-model-watermark">
+                <div class="watermark-code" style="font-size:1.3rem;">
+                  <span>REWARD 01</span>
+                  GLOOVITO URBAN-01
+                </div>
+              </div>
+              <div class="img-model-plate" style="padding:8px 12px;">
+                <span class="plate-model-name" style="font-size:0.7rem;">URBAN-01 + POD-S1</span>
+                <span class="plate-badge">-50 €</span>
+              </div>
+            </div>
+
+            <span class="tier-id">REWARD KICKSTARTER 01 // CITTÀ (-5°C)</span>
+            <h3 class="tier-name">Gloovito Urban-01</h3>
+            <p class="tier-tagline">Il pacchetto per usare Gloovito ogni giorno in città, sui mezzi, a piedi o in bici.</p>
+            <div class="tier-price-row">
+              <span class="tier-amount">129 €</span>
+              <span class="tier-msrp">RETAIL 179 €</span>
+              <span class="tier-save-tag">-28% AL LANCIO</span>
+            </div>
+            <ul class="tier-specs">
+              <li><span>1x Guanto <strong>GLOOVITO URBAN-01</strong></span><strong>Incluso</strong></li>
+              <li><span>1x Capsula <strong>GLOOVITO POD-S1</strong></span><strong>Inclusa</strong></li>
+              <li><span>Cavo Ricarica Magnetico USB-C</span><strong>Incluso</strong></li>
+              <li><span>Impegno richiesto oggi</span><strong>0 € (Solo Email)</strong></li>
+            </ul>
+          </div>
+          <button class="btn-industrial" onclick="openReserveModal('Reward 01: GLOOVITO URBAN-01 (129 € al lancio anziché 179 €)')">
+            OPZIONA URBAN-01 (0 € OGGI)
+          </button>
+        </div>
+
+        <!-- REWARD 2: ALPINE-PRO -->
+        <div class="tier-col reveal-up">
+          <div>
+            <div class="branded-visual tier-thumb tilt-card">
+              <img src="assets/alpine-pro-action.jpg" alt="GLOOVITO ALPINE-PRO" />
+              <div class="img-model-watermark">
+                <div class="watermark-code" style="font-size:1.3rem;">
+                  <span>REWARD 02</span>
+                  GLOOVITO ALPINE-PRO
+                </div>
+              </div>
+              <div class="img-model-plate" style="padding:8px 12px;">
+                <span class="plate-model-name" style="font-size:0.7rem;">ALPINE-PRO + POD-S1</span>
+                <span class="plate-badge">-60 €</span>
+              </div>
+            </div>
+
+            <span class="tier-id">REWARD KICKSTARTER 02 // SCI (-20°C)</span>
+            <h3 class="tier-name">Gloovito Alpine-Pro</h3>
+            <p class="tier-tagline">Guanto corazzato impermeabile da sci con sicura bastoncino e controllo GoPro.</p>
+            <div class="tier-price-row">
+              <span class="tier-amount">169 €</span>
+              <span class="tier-msrp">RETAIL 229 €</span>
+              <span class="tier-save-tag">-26% AL LANCIO</span>
+            </div>
+            <ul class="tier-specs">
+              <li><span>1x Guanto <strong>GLOOVITO ALPINE-PRO</strong></span><strong>Incluso</strong></li>
+              <li><span>1x Capsula <strong>GLOOVITO POD-S1</strong></span><strong>Inclusa</strong></li>
+              <li><span>Profilo "Sicura Pista" + GoPro</span><strong>Incluso</strong></li>
+              <li><span>Impegno richiesto oggi</span><strong>0 € (Solo Email)</strong></li>
+            </ul>
+          </div>
+          <button class="btn-industrial" onclick="openReserveModal('Reward 02: GLOOVITO ALPINE-PRO (169 € al lancio anziché 229 €)')">
+            OPZIONA ALPINE-PRO (0 € OGGI)
+          </button>
+        </div>
+
+        <!-- REWARD 3: FOUNDER PACK 2-IN-1 -->
+        <div class="tier-col tier-featured reveal-up">
+          <div style="margin-top: 14px;">
+            <div class="branded-visual tier-thumb tilt-card">
+              <img src="assets/pack-2in1-flatlay.jpg" alt="GLOOVITO ALL-WINTER 2-IN-1" />
+              <div class="img-model-watermark">
+                <div class="watermark-code" style="font-size:1.3rem;">
+                  <span>REWARD 03 // COMPLETO</span>
+                  PACK 2-IN-1 (URBAN + ALPINE)
+                </div>
+              </div>
+              <div class="img-model-plate" style="padding:8px 12px;">
+                <span class="plate-model-name" style="font-size:0.7rem;">2 GUANTI + 1 POD-S1</span>
+                <span class="plate-badge">-100 €</span>
+              </div>
+            </div>
+
+            <span class="tier-id">REWARD KICKSTARTER 03 // CITTÀ + MONTAGNA</span>
+            <h3 class="tier-name">Founder Pack 2-in-1</h3>
+            <p class="tier-tagline">Ricevi <strong>entrambi i modelli (URBAN-01 + ALPINE-PRO)</strong> e sposti la capsula POD-S1 da uno all'altro in 2 secondi.</p>
+            <div class="tier-price-row">
+              <span class="tier-amount">199 €</span>
+              <span class="tier-msrp">RETAIL 299 €</span>
+              <span class="tier-save-tag">RISPARMI 100 € (-35%)</span>
+            </div>
+            <ul class="tier-specs">
+              <li><span><strong>URBAN-01</strong> + <strong>ALPINE-PRO</strong></span><strong style="color:var(--signal);">Entrambi (2 Paia)</strong></li>
+              <li><span>1x Capsula <strong>GLOOVITO POD-S1</strong></span><strong>Intercambiabile</strong></li>
+              <li><span>Custodia Rigida Founder Edition</span><strong>In Omaggio</strong></li>
+              <li><span>Impegno richiesto oggi</span><strong>0 € (Solo Email)</strong></li>
+            </ul>
+          </div>
+          <button class="btn-industrial primary" onclick="openReserveModal('Reward 03: Founder Pack 2-in-1 URBAN-01 + ALPINE-PRO (199 € anziché 299 €)')">
+            BLOCCA IL FOUNDER PACK (-100 €)
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 PILLARS OF BACKER TRUST -->
+      <div class="guarantee-strip">
+        <div class="guarantee-cell">
+          <strong>01 // ZERO PAGAMENTI OGGI</strong>
+          <span>Lasci solo la tua email: deciderai se confermare l'ordine quando vedrai il video del prototipo al lancio Kickstarter.</span>
+        </div>
+        <div class="guarantee-cell">
+          <strong>02 // GARANZIA KICKSTARTER ALL-OR-NOTHING</strong>
+          <span>Su Kickstarter nessun importo viene prelevato se la campagna non raggiunge il 100% dell'obiettivo di produzione.</span>
+        </div>
+        <div class="guarantee-cell">
+          <strong>03 // SCELTA TAGLIA A FINE CAMPAGNA</strong>
+          <span>Sceglierai comodamente la taglia (S/M/L/XL) di URBAN-01 e ALPINE-PRO con la guida millimetrica prima della spedizione.</span>
+        </div>
+        <div class="guarantee-cell">
+          <strong>04 // ACCESSO DIETRO LE QUINTE</strong>
+          <span>Ricevi tutti gli aggiornamenti sui test del prototipo e il link privato 24 ore prima dell'apertura pubblica.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- STICKY BOTTOM BACKER BAR -->
+  <div class="sticky-buy-bar">
+    <div class="sticky-buy-left">
+      <div>
+        <div style="font-weight:700; font-size:0.95rem;">FOUNDER PACK 2-IN-1: GLOOVITO URBAN-01 + ALPINE-PRO + POD-S1</div>
+        <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--bone-dim);">
+          BLOCCA OGGI A 0 € LO SCONTO KICKSTARTER (199 € ANZICHÉ 299 € FUTURO RETAIL)
+        </div>
+      </div>
+      <div class="stock-meter">
+        <div class="stock-bar-outer"><div class="stock-bar-inner" id="sticky-bar-fill"></div></div>
+        <span>OBIETTIVO 500 VIP: <strong style="color:var(--ks-green);" id="sticky-backer-count">342 / 500 ISCRITTI</strong></span>
+      </div>
+    </div>
+
+    <button class="cta-link-raw" style="border:none; cursor:pointer; background:var(--signal); color:var(--bone); padding:13px 24px;" onclick="openReserveModal('Reward 03: Founder Pack 2-in-1 URBAN-01 + ALPINE-PRO (199 €)')">
+      UNISCITI AI FONDATORI (0 €)
+    </button>
+  </div>
+
+  <!-- VIP BACKER REGISTRATION MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--hairline); padding-bottom:16px; margin-bottom:20px;">
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--signal);">LISTA VIP KICKSTARTER // 0 € OGGI</span>
+        <button onclick="closeReserveModal()" style="background:none; border:none; color:var(--bone); font-family:var(--font-mono); cursor:pointer;">[CHIUDI X]</button>
+      </div>
+      <h4 id="modal-tier-label" style="font-size:1.3rem; margin-bottom:8px;">Reward 03: Founder Pack 2-in-1 (199 €)</h4>
+      <p style="font-size:0.88rem; color:var(--bone-dim); margin-bottom:18px; line-height:1.5;">
+        Nessuna carta richiesta oggi. Ti invieremo i video dei test del prototipo e il <strong>link segreto per bloccare lo sconto Super Early Bird (-35%)</strong> 24 ore prima del lancio su Kickstarter.
+      </p>
+
+      <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--stone); text-transform:uppercase; letter-spacing:0.08em;">
+        1. QUALE MODELLO TI INTERESSA DI PIÙ?
+      </div>
+      <div class="size-grid">
+        <button class="size-btn" onclick="pickSize(this)">URBAN-01</button>
+        <button class="size-btn" onclick="pickSize(this)">ALPINE-PRO</button>
+        <button class="size-btn selected" onclick="pickSize(this)">PACK 2-IN-1</button>
+        <button class="size-btn" onclick="pickSize(this)">DOPPIO PACK</button>
+      </div>
+
+      <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--stone); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">
+        2. LA TUA EMAIL PER L'INVITO PRIVATO KICKSTARTER
+      </div>
+      <input
+        type="email"
+        placeholder="Inserisci la tua email..."
+        style="width:100%; padding:15px; background:var(--ink); border:1px solid var(--hairline-strong); color:var(--bone); font-family:var(--font-sans); font-size:0.92rem; margin-bottom:16px;"
+      />
+      <button class="btn-industrial primary" onclick="submitReserve()">ENTRA NELLA LISTA FONDATORI (0 €)</button>
+      <p id="modal-ok" style="display:none; margin-top:16px; font-family:var(--font-mono); font-size:0.75rem; color:var(--ks-green);">
+        ✓ BENVENUTO A BORDO! SEI UFFICIALMENTE UN FOUNDING BACKER DI GLOOVITO.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer-bar">
+    <span>© 2026 GLOOVITO — MODELS: URBAN-01 // ALPINE-PRO // POD-S1</span>
+    <span>CAMPAGNA PRE-LANCIO KICKSTARTER // ZERO PAGAMENTI OGGI</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
