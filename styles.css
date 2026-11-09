@@ -17,9 +17,9 @@
   --ks-green: #05CE78;
   --hairline: rgba(245, 242, 235, 0.13);
   --hairline-strong: rgba(245, 242, 235, 0.32);
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
   --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -50,7 +50,7 @@ body {
   color: var(--bone);
 }
 
-/* ================= CINEMA GRAIN & CUSTOM MAGNETIC RETICLE ================= */
+/* ================= CINEMA GRAIN ================= */
 .film-grain {
   position: fixed;
   inset: 0;
@@ -58,37 +58,6 @@ body {
   pointer-events: none;
   opacity: 0.036;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.cinema-cursor {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(245, 242, 235, 0.45);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1500;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s var(--ease-cinema), height 0.3s var(--ease-cinema), border-color 0.3s ease, background 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  mix-blend-mode: difference;
-}
-
-.cinema-cursor::after {
-  content: '';
-  width: 4px;
-  height: 4px;
-  background: var(--signal);
-  border-radius: 50%;
-}
-
-.cinema-cursor.cursor-expand {
-  width: 78px;
-  height: 78px;
-  border-color: var(--signal);
-  background: rgba(255, 51, 0, 0.12);
 }
 
 /* ================= SCROLL REVEAL CHOREOGRAPHY ================= */
@@ -1422,8 +1391,7 @@ body {
   .nav-items,
   .drop-banner span.hide-mobile,
   .sticky-buy-left .stock-meter,
-  .hero-model-callout,
-  .cinema-cursor {
+  .hero-model-callout {
     display: none;
   }
 }

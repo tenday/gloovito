@@ -63,35 +63,7 @@ if (soundBtn) {
   });
 }
 
-// ============================================================================
-// 1. CUSTOM MAGNETIC CINEMA CURSOR
-// ============================================================================
-const cursorEl = document.getElementById('cinema-cursor');
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let curX = mouseX;
-let curY = mouseY;
-
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animateCursor() {
-  curX += (mouseX - curX) * 0.18;
-  curY += (mouseY - curY) * 0.18;
-  if (cursorEl) {
-    cursorEl.style.left = `${curX}px`;
-    cursorEl.style.top = `${curY}px`;
-  }
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-document.querySelectorAll('a, button, .tilt-card, canvas').forEach((el) => {
-  el.addEventListener('mouseenter', () => cursorEl && cursorEl.classList.add('cursor-expand'));
-  el.addEventListener('mouseleave', () => cursorEl && cursorEl.classList.remove('cursor-expand'));
-});
+// (Custom magnetic cursor removed: using clean native system cursor)
 
 // ============================================================================
 // 2. INTERSECTION OBSERVER: SHUTTER UNMASKING & KINETIC REVEALS
@@ -272,7 +244,7 @@ function renderSwapStage() {
 
   // Pod Label below/above capsule
   sCtx.fillStyle = '#F5F2EB';
-  sCtx.font = '700 12px "IBM Plex Mono", monospace';
+  sCtx.font = '700 12px "Sora", sans-serif';
   sCtx.textAlign = 'center';
   sCtx.fillText('GLOOVITO POD-S1', podX, podY - podRadius - 14);
 
@@ -298,12 +270,12 @@ function drawGloveDock(x, y, modelName, subLabel, activeWeight) {
 
   // Model Name Typography
   sCtx.fillStyle = '#F5F2EB';
-  sCtx.font = '800 16px "Plus Jakarta Sans", sans-serif';
+  sCtx.font = '800 16px "Sora", sans-serif';
   sCtx.textAlign = 'center';
   sCtx.fillText(modelName, x, y + 122);
 
   sCtx.fillStyle = activeWeight > 0.5 ? '#FF3300' : '#74716A';
-  sCtx.font = '600 11px "IBM Plex Mono", monospace';
+  sCtx.font = '600 11px "Sora", sans-serif';
   sCtx.fillText(subLabel, x, y - 108);
 }
 
@@ -414,19 +386,19 @@ function renderPodCad() {
   pCtx.stroke();
 
   pCtx.fillStyle = '#FF3300';
-  pCtx.fillRect(cx - 18, cy - 22, 36, 5);
+  pCtx.fillRect(cx - 88, cy - 3, 176, 6);
 
   pCtx.fillStyle = '#F5F2EB';
-  pCtx.font = '700 13px "Plus Jakarta Sans", sans-serif';
+  pCtx.font = '700 13px "Sora", sans-serif';
   pCtx.textAlign = 'center';
-  pCtx.fillText('GLOOVITO POD-S1', cx, cy + 2);
+  pCtx.fillText('GLOOVITO POD-S1', cx, cy - 22);
 
   pCtx.fillStyle = '#B8B4AA';
-  pCtx.font = '500 9px "IBM Plex Mono", monospace';
-  pCtx.fillText(activeGestureLabel, cx, cy + 24);
+  pCtx.font = '500 9px "Sora", sans-serif';
+  pCtx.fillText(activeGestureLabel, cx, cy + 28);
 
   pCtx.fillStyle = '#B8B4AA';
-  pCtx.font = '400 10px "IBM Plex Mono", monospace';
+  pCtx.font = '400 10px "Sora", sans-serif';
   pCtx.textAlign = 'left';
   pCtx.fillText('MODELLO: POD-S1 // TITANIO ANODIZZATO', 22, 28);
   pCtx.textAlign = 'right';
