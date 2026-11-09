@@ -82,9 +82,9 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================================================
-// 3. SHARED PROCEDURAL HIGH-RES TEXTURES (CONICAL BRUSHED METAL & 4-LAYER PCB)
+// 3. SHARED PROCEDURAL HIGH-RES TEXTURES (SINGLE PURE RED LINEA ROSSA)
 // ============================================================================
-function createTopCapTexture(includeRedLine = true) {
+function createTopCapTexture() {
   const size = 1024;
   const c = document.createElement('canvas');
   c.width = size;
@@ -93,6 +93,7 @@ function createTopCapTexture(includeRedLine = true) {
   const cx = size / 2;
   const cy = size / 2;
 
+  // Conical brushed dark gunmetal titanium base matching the reference photo
   const imgData = ctx.createImageData(size, size);
   const data = imgData.data;
   for (let y = 0; y < size; y++) {
@@ -102,22 +103,22 @@ function createTopCapTexture(includeRedLine = true) {
       const r = Math.hypot(dx, dy);
       const angle = Math.atan2(dy, dx);
       const sheen =
-        Math.cos(angle * 2 + 0.8) * 26 +
-        Math.sin(angle * 4 - 0.4) * 10 +
-        Math.sin(r * 0.45) * 2.5 +
-        (Math.random() - 0.5) * 4.5;
-      const base = 76 + sheen;
+        Math.cos(angle * 2 + 0.8) * 24 +
+        Math.sin(angle * 4 - 0.4) * 9 +
+        Math.sin(r * 0.45) * 2 +
+        (Math.random() - 0.5) * 4;
+      const base = 68 + sheen;
       const idx = (y * size + x) * 4;
-      data[idx] = Math.min(255, Math.max(0, base + 2));
+      data[idx] = Math.min(255, Math.max(0, base + 1));
       data[idx + 1] = Math.min(255, Math.max(0, base));
-      data[idx + 2] = Math.min(255, Math.max(0, base - 3));
+      data[idx + 2] = Math.min(255, Math.max(0, base - 2));
       data[idx + 3] = 255;
     }
   }
   ctx.putImageData(imgData, 0, 0);
 
-  // Outer chamfer shadow ring
-  ctx.strokeStyle = 'rgba(15, 15, 14, 0.65)';
+  // Subtle dark outer chamfer shadow ring
+  ctx.strokeStyle = 'rgba(12, 12, 11, 0.72)';
   ctx.lineWidth = 26;
   ctx.beginPath();
   ctx.arc(cx, cy, size * 0.47, 0, Math.PI * 2);
@@ -125,30 +126,24 @@ function createTopCapTexture(includeRedLine = true) {
 
   // Engraved "GLOOVITO" wordmark at bottom parallel to the central Linea Rossa
   ctx.save();
-  ctx.fillStyle = 'rgba(20, 20, 18, 0.9)';
+  ctx.fillStyle = 'rgba(18, 18, 16, 0.92)';
   ctx.font = '700 44px "Sora", sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('GLOOVITO', cx, cy + size * 0.34);
   ctx.restore();
 
-  // Central milled slot for the #FF3300 Linea Rossa across exact center (0,0)
-  const lineLen = size * 0.74;
-  const lineThick = 28;
-  ctx.fillStyle = '#121210';
+  // Strictly ONE single flush central Linea Rossa (#D91E00 / #E62200) across (0,0)
+  const lineLen = size * 0.72;
+  const lineThick = 26;
+  ctx.fillStyle = '#141412';
   ctx.beginPath();
-  ctx.roundRect(cx - lineLen / 2 - 4, cy - lineThick / 2 - 4, lineLen + 8, lineThick + 8, 16);
+  ctx.roundRect(cx - lineLen / 2 - 4, cy - lineThick / 2 - 4, lineLen + 8, lineThick + 8, 15);
   ctx.fill();
 
-  if (includeRedLine) {
-    const redGrad = ctx.createLinearGradient(cx - lineLen / 2, cy - lineThick / 2, cx + lineLen / 2, cy + lineThick / 2);
-    redGrad.addColorStop(0, '#E62E00');
-    redGrad.addColorStop(0.5, '#FF3B0A');
-    redGrad.addColorStop(1, '#CC2900');
-    ctx.fillStyle = redGrad;
-    ctx.beginPath();
-    ctx.roundRect(cx - lineLen / 2, cy - lineThick / 2, lineLen, lineThick, 13);
-    ctx.fill();
-  }
+  ctx.fillStyle = '#D91E00';
+  ctx.beginPath();
+  ctx.roundRect(cx - lineLen / 2, cy - lineThick / 2, lineLen, lineThick, 12);
+  ctx.fill();
 
   return c;
 }
@@ -162,51 +157,32 @@ function createPCBTexture() {
   const cx = size / 2;
   const cy = size / 2;
 
-  ctx.fillStyle = '#0E100F';
+  // Deep matte black 4-layer solder mask (no yellow lines)
+  ctx.fillStyle = '#0D0E0D';
   ctx.fillRect(0, 0, size, size);
 
-  // Gold ENIG perimeter ring
-  ctx.strokeStyle = '#D4AF37';
-  ctx.lineWidth = 24;
+  // Subtle dark grey perimeter ground ring
+  ctx.strokeStyle = '#383A3C';
+  ctx.lineWidth = 20;
   ctx.beginPath();
   ctx.arc(cx, cy, size * 0.46, 0, Math.PI * 2);
   ctx.stroke();
 
-  // Copper/Gold differential traces
-  ctx.strokeStyle = 'rgba(212, 175, 55, 0.6)';
-  ctx.lineWidth = 4;
-  for (let i = -6; i <= 6; i++) {
-    ctx.beginPath();
-    ctx.moveTo(cx + i * 34, cy - 340);
-    ctx.lineTo(cx + i * 34, cy + 340);
-    ctx.stroke();
-  }
-
-  // Gold Vias
-  ctx.fillStyle = '#E5C158';
-  for (let a = 0; a < Math.PI * 2; a += Math.PI / 12) {
-    const vx = cx + Math.cos(a) * (size * 0.41);
-    const vy = cy + Math.sin(a) * (size * 0.41);
-    ctx.beginPath();
-    ctx.arc(vx, vy, 8, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
   // Central Y=0.00 optical slot & 3 hyper-red LEDs
-  ctx.fillStyle = '#240804';
-  ctx.fillRect(cx - 340, cy - 22, 680, 44);
-  ctx.strokeStyle = '#FF3300';
+  ctx.fillStyle = '#1E0603';
+  ctx.fillRect(cx - 320, cy - 20, 640, 40);
+  ctx.strokeStyle = '#D91E00';
   ctx.lineWidth = 4;
-  ctx.strokeRect(cx - 340, cy - 22, 680, 44);
+  ctx.strokeRect(cx - 320, cy - 20, 640, 40);
 
-  [-260, 0, 260].forEach((dx) => {
-    ctx.fillStyle = '#FF3300';
+  [-240, 0, 240].forEach((dx) => {
+    ctx.fillStyle = '#E62200';
     ctx.beginPath();
-    ctx.arc(cx + dx, cy, 16, 0, Math.PI * 2);
+    ctx.arc(cx + dx, cy, 15, 0, Math.PI * 2);
     ctx.fill();
   });
 
-  ctx.fillStyle = '#F5F2EB';
+  ctx.fillStyle = '#B8B4AA';
   ctx.font = '600 22px "Sora", sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('GLOOVITO-PCB-S1 REV 2.0 • Y=0.00', cx, cy - 34);
@@ -215,20 +191,20 @@ function createPCBTexture() {
 }
 
 // ============================================================================
-// 4. SECTION 02: SCROLLYTELLING 8-PART 3D EXPLODED TEARDOWN ENGINE
+// 4. SECTION 02: SCROLLYTELLING 3D EXPLODED TEARDOWN ENGINE
 // ============================================================================
 const chapterTitles = [
   '01. Il Monolite Sigillato IP68 (Ø 28.0 × 7.5 mm)',
   '02. Inserto Ottico Centrale Linea Rossa (#FF3300)',
   '03. Calotta Unibody CNC in Alluminio 6061-T6',
   '04. Guarnizione Artica FKM Viton (-40 °C • IP68)',
-  '05. Scheda Madre 4-Layer GLOOVITO-PCB-S1 (ENIG Gold)',
+  '05. Scheda Madre 4-Layer GLOOVITO-PCB-S1',
   '06. Attuatore Aptico LRA & Cella LiPo -20 °C (80 mAh)',
   '07. Baionetta Meccanica 15° & Dock Magnetico N52'
 ];
 
 let teardownTargetStep = 0;
-let teardownScrollProgress = 0; // 0..1 across the whole section
+let teardownScrollProgress = 0;
 
 window.scrollToTeardownStep = function (stepIndex) {
   playMechanicalSwitch(660);
@@ -248,82 +224,47 @@ function initTeardownScrolly3D() {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, width / height, 0.1, 100);
-  camera.position.set(0, 3.8, 8.2);
+  camera.position.set(0, 4.0, 8.0);
   camera.lookAt(0, 0, 0);
 
+  // Use NoToneMapping so #D91E00 red NEVER skews toward yellow
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.22;
+  renderer.toneMapping = THREE.NoToneMapping;
   container.innerHTML = '';
   container.appendChild(renderer.domElement);
 
-  // Studio Lighting
-  scene.add(new THREE.AmbientLight(0xf5f2eb, 0.7));
+  // Balanced neutral studio lighting
+  scene.add(new THREE.AmbientLight(0xffffff, 0.78));
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
-  keyLight.position.set(6, 9, 7);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.15);
+  keyLight.position.set(5, 8, 6);
   scene.add(keyLight);
 
-  const signalLight = new THREE.DirectionalLight(0xff3300, 1.0);
-  signalLight.position.set(-7, 4, -5);
-  scene.add(signalLight);
-
-  const fillLight = new THREE.DirectionalLight(0xc8d6e8, 0.95);
-  fillLight.position.set(-5, -6, 5);
+  const fillLight = new THREE.DirectionalLight(0xd0d8e0, 0.65);
+  fillLight.position.set(-5, -4, 5);
   scene.add(fillLight);
 
   const rootGroup = new THREE.Group();
-  rootGroup.rotation.x = 0.44;
-  rootGroup.rotation.y = -0.42;
+  rootGroup.rotation.x = 0.48;
+  rootGroup.rotation.y = -0.38;
   scene.add(rootGroup);
 
-  // Central subtle vertical guide axis line when exploded
-  const axisGeo = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(0, -3.2, 0),
-    new THREE.Vector3(0, 3.2, 0)
-  ]);
-  const axisMat = new THREE.LineBasicMaterial({
-    color: 0xff3300,
-    transparent: true,
-    opacity: 0.0
-  });
-  const axisLine = new THREE.Line(axisGeo, axisMat);
-  rootGroup.add(axisLine);
-
-  // --- PART 1: LINEA ROSSA OPTICAL WAVEGUIDE INLAY (#FF3300) ---
-  const partLineaRossa = new THREE.Group();
-  const lineaGeo = new THREE.BoxGeometry(2.64, 0.08, 0.12);
-  const lineaMat = new THREE.MeshStandardMaterial({
-    color: 0xff3300,
-    roughness: 0.25,
-    metalness: 0.15,
-    emissive: 0xff2200,
-    emissiveIntensity: 0.18
-  });
-  const lineaMesh = new THREE.Mesh(lineaGeo, lineaMat);
-  partLineaRossa.add(lineaMesh);
-  // Subtle micro-prism ribs under the waveguide
-  const prismGeo = new THREE.BoxGeometry(2.4, 0.04, 0.06);
-  const prismMesh = new THREE.Mesh(prismGeo, lineaMat);
-  prismMesh.position.y = -0.05;
-  partLineaRossa.add(prismMesh);
-  rootGroup.add(partLineaRossa);
-
-  // --- PART 2: CNC 6061-T6 UNIBODY TOP CAP ---
+  // --- PART 1: CNC 6061-T6 UNIBODY TOP CAP WITH FLUSH CENTRAL LINEA ROSSA ---
+  // (Single unified top piece: no second floating bar on top!)
   const partTopCap = new THREE.Group();
-  const capTex = new THREE.CanvasTexture(createTopCapTexture(false));
+  const capTex = new THREE.CanvasTexture(createTopCapTexture());
   capTex.anisotropy = 8;
   const gunmetalSideMat = new THREE.MeshStandardMaterial({
-    color: 0x3b3b37,
-    metalness: 0.86,
-    roughness: 0.27
+    color: 0x383834,
+    metalness: 0.78,
+    roughness: 0.32
   });
   const gunmetalTopMat = new THREE.MeshStandardMaterial({
     map: capTex,
-    metalness: 0.78,
-    roughness: 0.26
+    metalness: 0.65,
+    roughness: 0.32
   });
   const capMesh = new THREE.Mesh(
     new THREE.CylinderGeometry(1.86, 1.9, 0.34, 64),
@@ -331,53 +272,47 @@ function initTeardownScrolly3D() {
   );
   partTopCap.add(capMesh);
 
-  const bezelGeo = new THREE.TorusGeometry(1.86, 0.048, 20, 64);
+  const bezelGeo = new THREE.TorusGeometry(1.86, 0.046, 20, 64);
   bezelGeo.rotateX(Math.PI / 2);
   const bezelMesh = new THREE.Mesh(bezelGeo, gunmetalSideMat);
   bezelMesh.position.y = 0.16;
   partTopCap.add(bezelMesh);
   rootGroup.add(partTopCap);
 
-  // --- PART 3: FKM VITON ARCTIC O-RING SEAL (IP68) ---
+  // --- PART 2: FKM VITON ARCTIC O-RING SEAL (IP68) ---
   const partORing = new THREE.Group();
   const oringGeo = new THREE.TorusGeometry(1.68, 0.055, 20, 64);
   oringGeo.rotateX(Math.PI / 2);
   const oringMat = new THREE.MeshStandardMaterial({
-    color: 0x1c1c1a,
+    color: 0x181816,
     roughness: 0.65,
     metalness: 0.1
   });
   partORing.add(new THREE.Mesh(oringGeo, oringMat));
   rootGroup.add(partORing);
 
-  // --- PART 4: 4-LAYER GLOOVITO-PCB-S1 (ENIG GOLD + nRF52840 + LSM6DSOX) ---
+  // --- PART 3: 4-LAYER GLOOVITO-PCB-S1 (nRF52840 + LSM6DSOX + 3 RED LEDS) ---
   const partPCB = new THREE.Group();
   const pcbTex = new THREE.CanvasTexture(createPCBTexture());
-  const pcbGoldMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.92, roughness: 0.18 });
-  const pcbFaceMat = new THREE.MeshStandardMaterial({ map: pcbTex, metalness: 0.48, roughness: 0.38 });
+  const pcbRimMat = new THREE.MeshStandardMaterial({ color: 0x2a2c2e, metalness: 0.7, roughness: 0.3 });
+  const pcbFaceMat = new THREE.MeshStandardMaterial({ map: pcbTex, metalness: 0.35, roughness: 0.45 });
 
   const pcbBoard = new THREE.Mesh(
     new THREE.CylinderGeometry(1.62, 1.62, 0.08, 64),
-    [pcbGoldMat, pcbFaceMat, pcbFaceMat]
+    [pcbRimMat, pcbFaceMat, pcbFaceMat]
   );
   partPCB.add(pcbBoard);
 
   // U1 Raytac nRF52840 RF Shield + Ceramic Antenna
-  const shieldMat = new THREE.MeshStandardMaterial({ color: 0xc4c8cc, metalness: 0.88, roughness: 0.2 });
+  const shieldMat = new THREE.MeshStandardMaterial({ color: 0xb8bcc0, metalness: 0.82, roughness: 0.25 });
   const u1Mesh = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.13, 0.62), shieldMat);
   u1Mesh.position.set(0, 0.095, -0.58);
   partPCB.add(u1Mesh);
 
-  const antMat = new THREE.MeshStandardMaterial({ color: 0xf0ede6, roughness: 0.3, metalness: 0.1 });
-  const antMesh = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.08, 0.16), antMat);
-  antMesh.position.set(0.32, 0.08, -1.02);
-  partPCB.add(antMesh);
-
-  // 3 Equatorial Hyper-Red SMD LEDs along Y=0.00 (Z=0 in 3D cylinder coordinates)
+  // 3 Equatorial Hyper-Red SMD LEDs along Y=0.00
   const ledMat = new THREE.MeshStandardMaterial({
-    color: 0xff3300,
-    emissive: 0xff2200,
-    emissiveIntensity: 0.65
+    color: 0xd91e00,
+    roughness: 0.3
   });
   [-0.85, 0, 0.85].forEach((lx) => {
     const led = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.06, 0.08), ledMat);
@@ -401,28 +336,21 @@ function initTeardownScrolly3D() {
 
   rootGroup.add(partPCB);
 
-  // --- PART 5: LRA HAPTIC ACTUATOR + ARCTIC LIPO CELL (-20°C, 80mAh) ---
+  // --- PART 4: LRA HAPTIC ACTUATOR + ARCTIC LIPO CELL (-20°C, 80mAh) ---
   const partEnergyHaptic = new THREE.Group();
-  // LRA Pancake Motor (Silver/Copper cylinder)
-  const lraMat = new THREE.MeshStandardMaterial({ color: 0xb08d57, metalness: 0.85, roughness: 0.24 });
+  const lraMat = new THREE.MeshStandardMaterial({ color: 0x7c8085, metalness: 0.8, roughness: 0.28 });
   const lraMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.14, 32), lraMat);
   lraMesh.position.set(-0.52, 0.08, 0);
   partEnergyHaptic.add(lraMesh);
 
-  // Arctic LiPo 80mAh Pouch Cell with Amber Kapton Collar
-  const lipoMat = new THREE.MeshStandardMaterial({ color: 0x90959c, metalness: 0.76, roughness: 0.32 });
+  const lipoMat = new THREE.MeshStandardMaterial({ color: 0x888d94, metalness: 0.72, roughness: 0.34 });
   const lipoMesh = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.18, 1.18), lipoMat);
   lipoMesh.position.set(0.22, -0.02, 0);
   partEnergyHaptic.add(lipoMesh);
 
-  const kaptonMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.35, metalness: 0.2 });
-  const kaptonMesh = new THREE.Mesh(new THREE.BoxGeometry(1.37, 0.19, 0.26), kaptonMat);
-  kaptonMesh.position.set(0.22, -0.02, -0.45);
-  partEnergyHaptic.add(kaptonMesh);
-
   rootGroup.add(partEnergyHaptic);
 
-  // --- PART 6: RF LOWER SHELL + 15° BAYONET LUGS ---
+  // --- PART 5: RF LOWER SHELL + 15° BAYONET LUGS ---
   const partLowerShell = new THREE.Group();
   const shellMat = new THREE.MeshStandardMaterial({ color: 0x171715, metalness: 0.32, roughness: 0.52 });
   const shellBody = new THREE.Mesh(new THREE.CylinderGeometry(1.82, 1.48, 0.24, 64), shellMat);
@@ -433,7 +361,7 @@ function initTeardownScrolly3D() {
   partLowerShell.add(lugMesh);
   rootGroup.add(partLowerShell);
 
-  // --- PART 7: GLOVE MAGNETIC BAYONET DOCK RING (N52 + 4 GOLD POGO-PINS) ---
+  // --- PART 6: GLOVE MAGNETIC BAYONET DOCK RING (N52 MAGNETS) ---
   const partGloveDock = new THREE.Group();
   const dockMat = new THREE.MeshStandardMaterial({ color: 0x10100e, metalness: 0.38, roughness: 0.48 });
 
@@ -445,15 +373,15 @@ function initTeardownScrolly3D() {
   dockFlange.position.y = -0.12;
   partGloveDock.add(dockFlange);
 
-  const goldPinMat = new THREE.MeshStandardMaterial({ color: 0xffc83b, metalness: 0.96, roughness: 0.14 });
+  const contactMat = new THREE.MeshStandardMaterial({ color: 0xc0c6cc, metalness: 0.9, roughness: 0.18 });
   const pinGeo = new THREE.CylinderGeometry(0.065, 0.065, 0.22, 16);
   [-0.55, -0.18, 0.18, 0.55].forEach((px) => {
-    const pin = new THREE.Mesh(pinGeo, goldPinMat);
+    const pin = new THREE.Mesh(pinGeo, contactMat);
     pin.position.set(px, 0.02, 0);
     partGloveDock.add(pin);
   });
 
-  const n52Mat = new THREE.MeshStandardMaterial({ color: 0xa8b0b8, metalness: 0.9, roughness: 0.2 });
+  const n52Mat = new THREE.MeshStandardMaterial({ color: 0x9aa0a8, metalness: 0.88, roughness: 0.22 });
   const n52Geo = new THREE.CylinderGeometry(0.19, 0.19, 0.09, 24);
   [0, Math.PI / 2, Math.PI, (Math.PI * 3) / 2].forEach((ang) => {
     const mag = new THREE.Mesh(n52Geo, n52Mat);
@@ -463,63 +391,55 @@ function initTeardownScrolly3D() {
 
   rootGroup.add(partGloveDock);
 
-  // Metadata for the 7 exploded layers & their 3D callout labels
+  // Metadata for the 6 physical exploded layers & their 3D callout labels
   const layers = [
-    {
-      group: partLineaRossa,
-      closedY: 0.41,
-      openY: 2.35,
-      label: '01. GUIDA OTTICA LINEA ROSSA (#FF3300)',
-      side: 'right',
-      focusStep: 1
-    },
     {
       group: partTopCap,
       closedY: 0.24,
-      openY: 1.65,
-      label: '02. CALOTTA UNIBODY CNC 6061-T6 (Ø 28 MM)',
+      openY: 1.95,
+      label: '01. CALOTTA CNC 6061-T6 + LINEA ROSSA CENTRALE',
       side: 'left',
-      focusStep: 2
+      focusSteps: [1, 2]
     },
     {
       group: partORing,
       closedY: 0.1,
-      openY: 0.95,
-      label: '03. GUARNIZIONE ARTICA FKM VITON (IP68)',
+      openY: 1.12,
+      label: '02. GUARNIZIONE ARTICA FKM VITON (IP68)',
       side: 'right',
-      focusStep: 3
+      focusSteps: [3]
     },
     {
       group: partPCB,
       closedY: 0.0,
-      openY: 0.22,
-      label: '04. SCHEDA 4-LAYER PCB-S1 (nRF52840 + LSM6DSOX)',
+      openY: 0.3,
+      label: '03. SCHEDA 4-LAYER PCB-S1 (nRF52840 + LSM6DSOX)',
       side: 'left',
-      focusStep: 4
+      focusSteps: [4]
     },
     {
       group: partEnergyHaptic,
       closedY: -0.12,
-      openY: -0.62,
-      label: '05. MOTORE APTICO LRA + CELLA LIPO -20 °C',
+      openY: -0.58,
+      label: '04. MOTORE APTICO LRA + CELLA LIPO -20 °C',
       side: 'right',
-      focusStep: 5
+      focusSteps: [5]
     },
     {
       group: partLowerShell,
       closedY: -0.24,
-      openY: -1.42,
-      label: '06. SCOCCA INFERIORE RF + BAIONETTA 15°',
+      openY: -1.38,
+      label: '05. SCOCCA INFERIORE RF + BAIONETTA 15°',
       side: 'left',
-      focusStep: 6
+      focusSteps: [6]
     },
     {
       group: partGloveDock,
       closedY: -0.38,
-      openY: -2.28,
-      label: '07. ANELLO DOCK PASSIVO GUANTO (4× N52 + POGO)',
+      openY: -2.22,
+      label: '06. ANELLO DOCK PASSIVO GUANTO (4× MAGNETI N52)',
       side: 'right',
-      focusStep: 6
+      focusSteps: [6]
     }
   ];
 
@@ -527,8 +447,8 @@ function initTeardownScrolly3D() {
   let isDragging = false;
   let prevX = 0;
   let prevY = 0;
-  let userRotY = -0.42;
-  let userRotX = 0.42;
+  let userRotY = -0.38;
+  let userRotX = 0.48;
 
   const startDrag = (x, y) => {
     isDragging = true;
@@ -566,7 +486,6 @@ function initTeardownScrolly3D() {
   );
   container.addEventListener('touchend', endDrag);
 
-  // Scroll Tracking across .teardown-scrolly-wrapper and .teardown-step cards
   const scrollyWrapper = document.getElementById('teardown-scrolly');
   const stepElements = document.querySelectorAll('.teardown-step');
   const hudTitle = document.getElementById('hud-chapter-title');
@@ -581,7 +500,6 @@ function initTeardownScrolly3D() {
     const rawProgress = -rect.top / totalScrollable;
     teardownScrollProgress = Math.min(1, Math.max(0, rawProgress));
 
-    // Find which step card is closest to viewport center
     let closestStep = 0;
     let minDist = Infinity;
     const viewMid = window.innerHeight * 0.48;
@@ -604,7 +522,6 @@ function initTeardownScrolly3D() {
       }
     }
 
-    // Explosion factor reaches 100% smoothly as you leave Step 0
     const explodeFactor = Math.min(1, Math.max(0, teardownScrollProgress * 1.28));
     const pctVal = Math.round(explodeFactor * 100);
     if (hudPct) hudPct.textContent = `APERTURA 3D: ${pctVal}%`;
@@ -622,7 +539,6 @@ function initTeardownScrolly3D() {
     renderer.setSize(nw, nh);
   });
 
-  // Render Loop with Real-Time 3D-to-SVG Leader Lines
   let smoothExplode = 0;
   let smoothFocusY = 0;
 
@@ -630,47 +546,41 @@ function initTeardownScrolly3D() {
     requestAnimationFrame(renderTeardown);
 
     if (!isDragging) {
-      userRotY += 0.003;
+      userRotY += 0.0028;
     }
 
-    // Target explosion factor: 0 on step 0, progressively opening to 1.0 on steps 1..6
     const targetExplode =
       teardownTargetStep === 0
-        ? Math.min(0.25, teardownScrollProgress * 1.4)
+        ? 0.0
         : Math.min(1.0, 0.35 + teardownTargetStep * 0.13);
 
     smoothExplode += (targetExplode - smoothExplode) * 0.08;
-    axisMat.opacity = smoothExplode * 0.38;
 
-    // Camera vertical pan slightly tracks the focused component
     let desiredFocusY = 0;
     layers.forEach((l) => {
       const curY = l.closedY + (l.openY - l.closedY) * smoothExplode;
       l.group.position.y += (curY - l.group.position.y) * 0.1;
 
-      // Highlight active step layer by giving it a subtle scale/spin boost
-      const isFocused = teardownTargetStep === l.focusStep;
-      const targetScale = isFocused ? 1.07 : 1.0;
+      const isFocused = l.focusSteps.includes(teardownTargetStep);
+      const targetScale = isFocused ? 1.06 : 1.0;
       l.group.scale.x += (targetScale - l.group.scale.x) * 0.1;
       l.group.scale.y += (targetScale - l.group.scale.y) * 0.1;
       l.group.scale.z += (targetScale - l.group.scale.z) * 0.1;
 
       if (isFocused) {
-        desiredFocusY = curY * 0.28;
+        desiredFocusY = curY * 0.25;
       }
     });
 
     smoothFocusY += (desiredFocusY - smoothFocusY) * 0.07;
     rootGroup.position.y = -smoothFocusY;
 
-    // Tilt adjustments per chapter for dramatic perspective
-    const chapterTiltX = teardownTargetStep === 4 ? 0.65 : 0.38;
+    const chapterTiltX = teardownTargetStep === 4 ? 0.65 : 0.45;
     rootGroup.rotation.x += (userRotX * 0.65 + chapterTiltX * 0.35 - rootGroup.rotation.x) * 0.09;
     rootGroup.rotation.y += (userRotY - rootGroup.rotation.y) * 0.09;
 
     renderer.render(scene, camera);
 
-    // Update SVG Leader Lines anchored to actual 3D layer coordinates
     if (svgOverlay) {
       if (smoothExplode < 0.18) {
         svgOverlay.innerHTML = '';
@@ -679,15 +589,14 @@ function initTeardownScrolly3D() {
         layers.forEach((l) => {
           const worldVec = new THREE.Vector3();
           l.group.getWorldPosition(worldVec);
-          // Offset anchor to rim edge of the component
-          worldVec.x += l.side === 'left' ? -1.45 : 1.45;
+          worldVec.x += l.side === 'left' ? -1.5 : 1.5;
           worldVec.project(camera);
 
           const sx = (worldVec.x * 0.5 + 0.5) * 800;
           const sy = (-worldVec.y * 0.5 + 0.5) * 600;
-          const endX = l.side === 'left' ? 54 : 746;
-          const elbowX = l.side === 'left' ? sx - 38 : sx + 38;
-          const isFocused = teardownTargetStep === l.focusStep;
+          const endX = l.side === 'left' ? 46 : 754;
+          const elbowX = l.side === 'left' ? sx - 36 : sx + 36;
+          const isFocused = l.focusSteps.includes(teardownTargetStep);
           const strokeCol = isFocused ? '#FF3300' : 'rgba(245, 242, 235, 0.32)';
           const textCol = isFocused ? '#FF3300' : 'rgba(245, 242, 235, 0.78)';
           const strokeW = isFocused ? '2' : '1';
@@ -734,45 +643,39 @@ function initPodWebGL() {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.18;
+  renderer.toneMapping = THREE.NoToneMapping;
   container.innerHTML = '';
   container.appendChild(renderer.domElement);
 
-  const ambientLight = new THREE.AmbientLight(0xf5f2eb, 0.65);
-  scene.add(ambientLight);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.78));
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.9);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.15);
   keyLight.position.set(5, 8, 6);
   scene.add(keyLight);
 
-  const rimLight = new THREE.DirectionalLight(0xff3300, 0.85);
-  rimLight.position.set(-6, 3, -5);
-  scene.add(rimLight);
-
-  const fillLight = new THREE.DirectionalLight(0xc8d4e3, 0.9);
+  const fillLight = new THREE.DirectionalLight(0xc8d4e3, 0.65);
   fillLight.position.set(-4, -5, 4);
   scene.add(fillLight);
 
   const assembly = new THREE.Group();
-  assembly.rotation.x = 0.42;
+  assembly.rotation.x = 0.48;
   assembly.rotation.y = -0.35;
   scene.add(assembly);
 
-  // Layer 1: Top Cap
+  // Layer 1: Top Cap with flush single Linea Rossa (NO duplicate 3D box!)
   const topCapGroup = new THREE.Group();
-  const topCapTex = new THREE.CanvasTexture(createTopCapTexture(true));
+  const topCapTex = new THREE.CanvasTexture(createTopCapTexture());
   topCapTex.anisotropy = 8;
 
   const gunmetalSideMat = new THREE.MeshStandardMaterial({
-    color: 0x3b3b37,
-    metalness: 0.86,
-    roughness: 0.28
+    color: 0x383834,
+    metalness: 0.78,
+    roughness: 0.32
   });
   const gunmetalTopMat = new THREE.MeshStandardMaterial({
     map: topCapTex,
-    metalness: 0.78,
-    roughness: 0.26
+    metalness: 0.65,
+    roughness: 0.32
   });
 
   const capGeo = new THREE.CylinderGeometry(1.85, 1.9, 0.34, 64);
@@ -785,22 +688,13 @@ function initPodWebGL() {
   rimMesh.position.y = 0.16;
   topCapGroup.add(rimMesh);
 
-  const lineaGeo = new THREE.BoxGeometry(2.62, 0.04, 0.095);
-  const lineaMat = new THREE.MeshStandardMaterial({
-    color: 0xff3300,
-    roughness: 0.35,
-    metalness: 0.1
-  });
-  const lineaMesh = new THREE.Mesh(lineaGeo, lineaMat);
-  lineaMesh.position.set(0, 0.162, 0);
-  topCapGroup.add(lineaMesh);
   assembly.add(topCapGroup);
 
   // Layer 2: PCB
   const pcbGroup = new THREE.Group();
   const pcbTex = new THREE.CanvasTexture(createPCBTexture());
-  const pcbSideMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.9, roughness: 0.2 });
-  const pcbFaceMat = new THREE.MeshStandardMaterial({ map: pcbTex, metalness: 0.45, roughness: 0.4 });
+  const pcbSideMat = new THREE.MeshStandardMaterial({ color: 0x2a2c2e, metalness: 0.7, roughness: 0.3 });
+  const pcbFaceMat = new THREE.MeshStandardMaterial({ map: pcbTex, metalness: 0.35, roughness: 0.45 });
 
   const pcbGeo = new THREE.CylinderGeometry(1.62, 1.62, 0.08, 64);
   const pcbMesh = new THREE.Mesh(pcbGeo, [pcbSideMat, pcbFaceMat, pcbFaceMat]);
@@ -851,7 +745,7 @@ function initPodWebGL() {
   const waveGeo = new THREE.RingGeometry(2.05, 2.13, 64);
   waveGeo.rotateX(-Math.PI / 2);
   const waveMat = new THREE.MeshBasicMaterial({
-    color: 0xff3300,
+    color: 0xd91e00,
     side: THREE.DoubleSide,
     transparent: true,
     opacity: 0
@@ -1002,7 +896,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================================
-// 6. GESTURE DEMO & IMU OSCILLOGRAPH
+// 6. GESTURE DEMO & SINGLE-LINE IMU OSCILLOGRAPH
 // ============================================================================
 const oscCanvas = document.getElementById('imu-oscillograph');
 const oCtx = oscCanvas ? oscCanvas.getContext('2d') : null;
@@ -1022,28 +916,15 @@ function renderOscillograph() {
   oCtx.lineTo(w, h / 2);
   oCtx.stroke();
 
-  oCtx.strokeStyle = '#F5F2EB';
-  oCtx.lineWidth = 1.6;
-  oCtx.beginPath();
-  for (let x = 0; x < w; x++) {
-    const env = Math.sin((x / w) * Math.PI);
-    const wave =
-      Math.sin(x * 0.05 + oscTime) * 3.5 +
-      oscBurst * Math.sin(x * 0.28 - oscTime * 4) * env;
-    const y = h / 2 + wave;
-    if (x === 0) oCtx.moveTo(x, y);
-    else oCtx.lineTo(x, y);
-  }
-  oCtx.stroke();
-
+  // Single pure #FF3300 red telemetry waveform
   oCtx.strokeStyle = '#FF3300';
-  oCtx.lineWidth = 1.4;
+  oCtx.lineWidth = 1.8;
   oCtx.beginPath();
   for (let x = 0; x < w; x++) {
     const env = Math.sin((x / w) * Math.PI);
     const wave =
-      Math.cos(x * 0.035 + oscTime * 0.7) * 2.5 +
-      oscBurst * 0.75 * Math.cos(x * 0.19 - oscTime * 3) * env;
+      Math.sin(x * 0.05 + oscTime) * 3.0 +
+      oscBurst * Math.sin(x * 0.26 - oscTime * 4) * env;
     const y = h / 2 + wave;
     if (x === 0) oCtx.moveTo(x, y);
     else oCtx.lineTo(x, y);
