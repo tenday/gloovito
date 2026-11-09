@@ -1,8 +1,7 @@
 /* ==========================================================================
-   GLOOVITO V2 — KINETIC CINEMA EDITION & MODEL BRANDING SYSTEM
+   GLOOVITO — INDUSTRIAL LUXURY EDITION & WEBGL 3D ENGINE
    Aesthetic: Prada Linea Rossa × Arc'teryx Veilance × Teenage Engineering
-   High-level scroll choreography, 3D perspective tilt, magnetic Pod Swap,
-   and prominent Model Name typography on every visual.
+   Global Typography: Sora
    ========================================================================== */
 
 :root {
@@ -56,15 +55,15 @@ body {
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.036;
+  opacity: 0.032;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ================= SCROLL REVEAL CHOREOGRAPHY ================= */
 .reveal-up {
   opacity: 0;
-  transform: translateY(42px);
-  transition: opacity 0.95s var(--ease-cinema), transform 0.95s var(--ease-cinema);
+  transform: translateY(32px);
+  transition: opacity 0.85s var(--ease-cinema), transform 0.85s var(--ease-cinema);
 }
 
 .reveal-up.in-view {
@@ -72,151 +71,86 @@ body {
   transform: translateY(0);
 }
 
-.shutter-reveal {
-  clip-path: inset(14% 0 14% 0);
-  opacity: 0.2;
-  transform: scale(1.06);
-  transition: clip-path 1.15s var(--ease-cinema), opacity 0.9s var(--ease-cinema), transform 1.35s var(--ease-cinema);
+/* ================= CLEAN GALLERY PHOTO CARDS ================= */
+.editorial-photo-card {
+  border: 1px solid var(--hairline);
+  background: #050505;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.shutter-reveal.in-view {
-  clip-path: inset(0% 0 0% 0);
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* ================= MODEL NAME STAMP ON EVERY IMAGE ================= */
-.branded-visual {
+.editorial-photo-wrap {
   position: relative;
+  height: 450px;
   overflow: hidden;
   background: #050505;
-  border: 1px solid var(--hairline);
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
-.branded-visual img {
+.editorial-photo-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.85s var(--ease-cinema), filter 0.6s ease;
+  transition: transform 0.9s var(--ease-cinema);
 }
 
-.branded-visual:hover img {
-  transform: scale(1.05);
+.editorial-photo-card:hover .editorial-photo-wrap img {
+  transform: scale(1.035);
 }
 
-/* Specular Glare Overlay on 3D Tilt */
-.branded-visual::after {
-  content: '';
+.photo-corner-pill {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    480px circle at var(--glare-x, 50%) var(--glare-y, 50%),
-    rgba(255, 255, 255, 0.14),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.branded-visual:hover::after {
-  opacity: 1;
-}
-
-/* Giant Background Typographic Watermark on Image */
-.img-model-watermark {
-  position: absolute;
-  top: 14px;
-  left: 18px;
-  right: 18px;
-  z-index: 2;
-  pointer-events: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.watermark-code {
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  text-transform: uppercase;
-  color: rgba(245, 242, 235, 0.92);
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
-}
-
-.watermark-code span {
-  display: block;
-  font-family: var(--font-mono);
+  top: 16px;
+  left: 16px;
+  background: rgba(8, 8, 7, 0.84);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid var(--signal);
+  color: var(--bone);
   font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--signal);
-  margin-bottom: 4px;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  text-transform: uppercase;
 }
 
-.watermark-telemetry {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  padding: 5px 10px;
-  background: rgba(8, 8, 7, 0.78);
-  border: 1px solid var(--hairline-strong);
-  color: var(--bone);
-  backdrop-filter: blur(8px);
-}
-
-/* Bottom Linea Rossa Nameplate on Every Image */
-.img-model-plate {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  z-index: 4;
-  background: rgba(8, 8, 7, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--hairline-strong);
-  border-left: 4px solid var(--signal);
-  padding: 12px 16px;
+.photo-caption-bar {
+  background: var(--ink-elevated);
+  border-top: 1px solid var(--hairline);
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  pointer-events: none;
-  transform: translateZ(30px);
+  gap: 12px;
 }
 
 .plate-model-name {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   color: var(--bone);
   text-transform: uppercase;
 }
 
 .plate-model-sub {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   color: var(--bone-dim);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
 }
 
 .plate-badge {
   background: var(--signal);
   color: var(--bone);
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  padding: 4px 8px;
-  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ================= TOP KICKSTARTER BANNER & NAVBAR ================= */
@@ -228,10 +162,9 @@ body {
   height: 34px;
   background: var(--signal);
   color: var(--bone);
-  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -247,7 +180,7 @@ body {
   background: var(--bone);
   border-radius: 50%;
   display: inline-block;
-  margin-right: 6px;
+  margin-right: 8px;
   animation: pulseDot 1.4s infinite;
 }
 
@@ -282,7 +215,7 @@ body {
   color: var(--bone);
   font-weight: 700;
   font-size: 1rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   gap: 12px;
 }
@@ -304,14 +237,14 @@ body {
 
 .nav-items {
   display: flex;
-  gap: 26px;
+  gap: 24px;
   list-style: none;
 }
 
 .nav-items a {
   color: var(--bone-dim);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   transition: color 0.2s ease;
 }
@@ -321,8 +254,7 @@ body {
 }
 
 .ks-badge-pill {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   color: var(--bone);
   letter-spacing: 0.08em;
   display: flex;
@@ -350,9 +282,10 @@ body {
   background: none;
   border: none;
   color: var(--bone-dim);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
@@ -393,7 +326,7 @@ body {
   background: var(--bone);
   color: var(--ink);
   text-decoration: none;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -407,9 +340,9 @@ body {
   color: var(--bone);
 }
 
-/* ================= STICKY CINEMA HERO WITH MODEL OVERLAY ================= */
+/* ================= STICKY CINEMA HERO ================= */
 .hero-scroll-wrapper {
-  height: 205vh;
+  height: 185vh;
   position: relative;
 }
 
@@ -441,26 +374,25 @@ body {
     linear-gradient(90deg, rgba(8,8,7,0.92) 0%, rgba(8,8,7,0.42) 55%, rgba(8,8,7,0.78) 100%),
     linear-gradient(180deg, rgba(8,8,7,0.3) 0%, rgba(8,8,7,0.96) 100%),
     url('assets/urban-01-studio.jpg') center/cover no-repeat;
-  filter: contrast(1.14) brightness(0.9);
+  filter: contrast(1.12) brightness(0.92);
 }
 
-/* Hero Floating Model Badge on Right */
 .hero-model-callout {
   position: absolute;
   top: 165px;
   right: 56px;
   z-index: 4;
-  background: rgba(8, 8, 7, 0.82);
+  background: rgba(8, 8, 7, 0.84);
   backdrop-filter: blur(12px);
   border: 1px solid var(--hairline-strong);
   border-top: 3px solid var(--signal);
   padding: 16px 22px;
-  font-family: var(--font-mono);
   text-align: right;
 }
 
 .hero-model-callout .hm-tag {
-  font-size: 0.65rem;
+  font-size: 0.64rem;
+  font-weight: 600;
   color: var(--signal);
   letter-spacing: 0.14em;
   display: block;
@@ -468,8 +400,7 @@ body {
 }
 
 .hero-model-callout .hm-name {
-  font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--bone);
@@ -500,8 +431,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--hairline);
-  font-family: var(--font-mono);
   font-size: 0.68rem;
+  font-weight: 500;
   color: var(--bone-dim);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -523,10 +454,9 @@ body {
 }
 
 .hero-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--signal);
   margin-bottom: 16px;
@@ -537,23 +467,22 @@ body {
 
 .hero-kicker::before {
   content: '';
-  width: 32px;
+  width: 28px;
   height: 2px;
   background: var(--signal);
 }
 
 .hero-mega-title {
-  font-size: clamp(3.1rem, 7.2vw, 7.2rem);
+  font-size: clamp(3rem, 6.8vw, 6.6rem);
   font-weight: 700;
-  line-height: 0.93;
-  letter-spacing: -0.045em;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   margin-bottom: 22px;
 }
 
 .hero-mega-title em {
-  font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
   text-transform: none;
   letter-spacing: -0.01em;
@@ -561,8 +490,8 @@ body {
 }
 
 .hero-subcopy {
-  font-size: 1.15rem;
-  line-height: 1.56;
+  font-size: 1.12rem;
+  line-height: 1.6;
   color: var(--bone-dim);
   max-width: 660px;
   margin-bottom: 28px;
@@ -583,10 +512,10 @@ body {
   background: var(--signal);
   color: var(--bone);
   text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 18px 32px;
   transition: all 0.25s var(--ease-cinema);
@@ -602,13 +531,14 @@ body {
 }
 
 .btn-hero-ghost {
-  background: rgba(8, 8, 7, 0.7);
+  background: rgba(8, 8, 7, 0.72);
   color: var(--bone);
   border: 1px solid var(--hairline-strong);
   text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 18px 28px;
   transition: all 0.25s var(--ease-cinema);
@@ -634,18 +564,17 @@ body {
 .hero-bottom-cell:last-child { border-right: none; }
 
 .stat-big {
-  font-size: 1.95rem;
-  font-weight: 600;
+  font-size: 1.85rem;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
   display: block;
 }
 
 .stat-caption {
-  font-family: var(--font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--stone);
   margin-top: 6px;
   display: block;
@@ -667,9 +596,9 @@ body {
 .marquee-track {
   display: inline-block;
   animation: marqueeScroll 28s linear infinite;
-  font-family: var(--font-mono);
   font-size: 0.74rem;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   color: var(--bone-dim);
   text-transform: uppercase;
 }
@@ -695,11 +624,11 @@ body {
 
 .section-index-bar {
   display: grid;
-  grid-template-columns: 230px 1fr 330px;
+  grid-template-columns: 250px 1fr 310px;
   border-bottom: 1px solid var(--hairline);
-  font-family: var(--font-mono);
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--stone);
 }
@@ -712,47 +641,42 @@ body {
 
 .index-num {
   color: var(--signal);
-  font-weight: 600;
+  font-weight: 700;
+  margin-right: 6px;
 }
 
 .editorial-h2 {
-  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  font-size: clamp(2rem, 3.3vw, 3.1rem);
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  margin-bottom: 22px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
 }
 
 .editorial-h2 em {
-  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--bone-dim);
 }
 
 .editorial-body {
-  font-size: 1.02rem;
+  font-size: 1rem;
   line-height: 1.68;
   color: var(--bone-dim);
   margin-bottom: 24px;
 }
 
-/* ================= 01: DUAL LIFESTYLE WITH BRANDED MODELS ================= */
+/* ================= 01 & 02: DUAL EDITORIAL COLUMNS ================= */
 .split-manifesto {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .manifesto-col {
-  padding: 64px 52px;
+  padding: 56px 48px;
   border-right: 1px solid var(--hairline);
 }
 .manifesto-col:last-child { border-right: none; }
-
-.scenario-frame {
-  height: 490px;
-  margin-bottom: 32px;
-}
 
 .specs-list {
   border-top: 1px solid var(--hairline);
@@ -760,15 +684,15 @@ body {
 
 .specs-row {
   display: grid;
-  grid-template-columns: 165px 1fr;
+  grid-template-columns: 175px 1fr;
   padding: 14px 0;
   border-bottom: 1px solid var(--hairline);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .specs-row dt {
-  font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--stone);
   letter-spacing: 0.06em;
@@ -778,55 +702,19 @@ body {
   color: var(--bone);
 }
 
-/* ================= 02: INTERACTIVE MAGNETIC POD SWAP STAGE ================= */
-.swap-theatre {
-  padding: 68px 52px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 51, 0, 0.06) 0%, transparent 70%),
-    var(--ink-elevated);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.swap-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 36px;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-#swap-canvas {
-  width: 100%;
-  height: 320px;
-  background: #060605;
-  border: 1px solid var(--hairline-strong);
-  display: block;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-
-.swap-controls-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-/* ================= 03: INTERACTIVE CONCEPT SIMULATOR ================= */
+/* ================= 03: REAL THREE.JS WEBGL 3D STUDIO & GESTURES ================= */
 .hardware-workbench {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.08fr 0.92fr;
 }
 
 .pod-cad-stage {
-  padding: 56px 48px;
+  padding: 44px 44px;
   border-right: 1px solid var(--hairline);
   background:
-    radial-gradient(circle at 50% 50%, rgba(255, 51, 0, 0.05) 0%, transparent 65%),
-    linear-gradient(to right, rgba(245,242,235,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245,242,235,0.03) 1px, transparent 1px);
+    radial-gradient(circle at 50% 45%, rgba(255, 51, 0, 0.08) 0%, rgba(17, 17, 15, 0.95) 68%),
+    linear-gradient(to right, rgba(245,242,235,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245,242,235,0.025) 1px, transparent 1px);
   background-size: 100% 100%, 32px 32px, 32px 32px;
   display: flex;
   flex-direction: column;
@@ -834,26 +722,78 @@ body {
   align-items: center;
 }
 
-#pod-hardware-canvas {
+.webgl-stage-header {
   width: 100%;
-  max-width: 460px;
-  height: 390px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--bone-dim);
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.webgl-viewport {
+  width: 100%;
+  height: 440px;
+  position: relative;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.webgl-viewport:active {
+  cursor: grabbing;
+}
+
+.webgl-controls-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.webgl-btn {
+  background: rgba(8, 8, 7, 0.85);
+  border: 1px solid var(--hairline-strong);
+  color: var(--bone-dim);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.webgl-btn:hover {
+  border-color: var(--bone);
+  color: var(--bone);
+}
+
+.webgl-btn.active {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--bone);
 }
 
 .cad-caption-bar {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--stone);
   border-top: 1px solid var(--hairline);
-  padding-top: 18px;
+  padding-top: 16px;
+  letter-spacing: 0.06em;
 }
 
 .gesture-panel {
-  padding: 56px 52px;
+  padding: 48px 48px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -870,30 +810,31 @@ body {
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--hairline);
-  padding: 17px 16px;
+  padding: 16px 14px;
   display: grid;
-  grid-template-columns: 46px 1fr auto;
+  grid-template-columns: 42px 1fr auto;
   align-items: center;
   text-align: left;
   color: var(--bone);
+  font-family: var(--font-sans);
   cursor: pointer;
   transition: background 0.15s ease, padding-left 0.2s ease;
 }
 
 .te-key:hover {
   background: rgba(245, 242, 235, 0.04);
-  padding-left: 22px;
+  padding-left: 20px;
 }
 
 .te-key.active {
   background: var(--ink-surface);
   border-left: 3px solid var(--signal);
-  padding-left: 22px;
+  padding-left: 20px;
 }
 
 .te-key-num {
-  font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-weight: 700;
   color: var(--stone);
 }
 
@@ -903,24 +844,25 @@ body {
 
 .te-key-title {
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   display: block;
 }
 
 .te-key-sub {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--bone-dim);
-  margin-top: 2px;
+  margin-top: 3px;
   display: block;
 }
 
 .te-key-code {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 4px 9px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 5px 10px;
   border: 1px solid var(--hairline);
   color: var(--bone-dim);
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .te-monitor {
@@ -932,12 +874,13 @@ body {
 .te-monitor-top {
   display: flex;
   justify-content: space-between;
-  font-family: var(--font-mono);
   font-size: 0.68rem;
+  font-weight: 600;
   color: var(--stone);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--hairline);
   margin-bottom: 12px;
+  letter-spacing: 0.06em;
 }
 
 .te-monitor-main {
@@ -945,18 +888,20 @@ body {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 12px;
+  gap: 12px;
 }
 
 .te-monitor-action {
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   color: var(--bone);
   font-weight: 600;
 }
 
 .te-monitor-state {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--signal);
+  white-space: nowrap;
 }
 
 #imu-oscillograph {
@@ -965,11 +910,10 @@ body {
   display: block;
 }
 
-/* ================= 04: MACRO GALLERY & FLATLAY WITH MODEL LABELS ================= */
+/* ================= 04: FLATLAY BANNER ================= */
 .pod-feature-banner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--hairline);
+  grid-template-columns: 1.08fr 0.92fr;
 }
 
 .pod-photo-cell {
@@ -1010,13 +954,13 @@ body {
   padding: 20px 0;
   border-bottom: 1px solid var(--hairline);
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 135px 1fr;
   gap: 18px;
 }
 
 .tl-phase {
-  font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-weight: 600;
   color: var(--stone);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1024,7 +968,6 @@ body {
 
 .tl-phase.active {
   color: var(--signal);
-  font-weight: 600;
 }
 
 .tl-title {
@@ -1050,6 +993,7 @@ body {
   border: 1px solid var(--hairline-strong);
   padding: 16px 20px;
   color: var(--bone);
+  font-family: var(--font-sans);
   text-align: left;
   cursor: pointer;
   position: relative;
@@ -1078,17 +1022,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  gap: 12px;
 }
 
 .poll-pct {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--signal);
+  white-space: nowrap;
 }
 
-/* ================= 06: KICKSTARTER REWARD TIERS WITH PRODUCT THUMBNAILS ================= */
+/* ================= 06: KICKSTARTER REWARD TIERS ================= */
 .tiers-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1110,30 +1056,61 @@ body {
 }
 
 .tier-col.tier-featured::before {
-  content: 'FOUNDER PACK // RISERVATO AI PRIMI 250 SOSTENITORI (-100 € SUL FUTURO RETAIL)';
+  content: 'FOUNDER PACK • RISERVATO AI PRIMI 250 SOSTENITORI (-100 € SUL FUTURO RETAIL)';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   background: var(--signal);
   color: var(--bone);
-  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   padding: 7px 40px;
 }
 
-.tier-thumb {
+.tier-photo-clean {
+  position: relative;
   height: 230px;
   margin-bottom: 24px;
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+  background: #050505;
+}
+
+.tier-photo-clean img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease-cinema);
+}
+
+.tier-col:hover .tier-photo-clean img {
+  transform: scale(1.04);
+}
+
+.tier-photo-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(8, 8, 7, 0.86);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline-strong);
+  border-left: 3px solid var(--signal);
+  color: var(--bone);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  text-transform: uppercase;
 }
 
 .tier-id {
-  font-family: var(--font-mono);
   font-size: 0.7rem;
+  font-weight: 600;
   color: var(--stone);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 8px;
   display: block;
@@ -1163,22 +1140,21 @@ body {
 }
 
 .tier-amount {
-  font-size: 3.1rem;
-  font-weight: 600;
+  font-size: 3rem;
+  font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
 }
 
 .tier-msrp {
-  font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--stone);
   text-decoration: line-through;
 }
 
 .tier-save-tag {
-  font-family: var(--font-mono);
   font-size: 0.68rem;
+  font-weight: 600;
   color: var(--signal);
   border: 1px solid var(--signal);
   padding: 2px 7px;
@@ -1205,17 +1181,16 @@ body {
   background: transparent;
   border: 1px solid var(--hairline-strong);
   color: var(--bone);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.25s var(--ease-cinema);
 }
 
-.btn-industrial:hover,
-.btn-industrial.primary {
+.btn-industrial:hover {
   background: var(--bone);
   color: var(--ink);
   border-color: var(--bone);
@@ -1244,17 +1219,17 @@ body {
 .guarantee-cell {
   padding: 24px 32px;
   border-right: 1px solid var(--hairline);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  line-height: 1.5;
 }
 .guarantee-cell:last-child { border-right: none; }
 
 .guarantee-cell strong {
   display: block;
   color: var(--bone);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 0.78rem;
+  letter-spacing: 0.04em;
 }
 
 .guarantee-cell span {
@@ -1288,7 +1263,6 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--bone-dim);
 }
@@ -1341,8 +1315,9 @@ body {
   background: var(--ink);
   border: 1px solid var(--hairline);
   color: var(--bone-dim);
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -1361,7 +1336,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--stone);
   text-transform: uppercase;
