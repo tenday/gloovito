@@ -31,10 +31,10 @@
     <div class="topbar-nav">
       <ul class="nav-items">
         <li><a href="#modelli-dual">01. Modelli</a></li>
-        <li><a href="#swap-section">02. Innesto Magnetico</a></li>
-        <li><a href="#esperienza">03. Studio 3D &amp; Gesti</a></li>
-        <li><a href="#ecosistema">04. Sistema 2-in-1</a></li>
-        <li><a href="#roadmap">05. Roadmap</a></li>
+        <li><a href="#esplosione-3d">02. Esplosione 3D Pod</a></li>
+        <li><a href="#swap-section">03. Macro &amp; PCB</a></li>
+        <li><a href="#esperienza">04. Prova i 5 Gesti</a></li>
+        <li><a href="#ecosistema">05. Sistema 2-in-1</a></li>
         <li><a href="#rewards">06. Kickstarter</a></li>
       </ul>
       <div class="ks-badge-pill">
@@ -85,8 +85,8 @@
               <strong>Gloovito</strong> è il primo sistema invernale modulare composto dai guanti termici <strong>URBAN-01</strong> e <strong>ALPINE-PRO</strong> e dalla capsula rimovibile <strong>GLOOVITO POD-S1</strong>. Comanda musica, chiamate e GoPro tenendo la mano chiusa nella tasca del cappotto o stretta sui bastoncini da sci.
             </p>
             <div class="hero-actions-inline">
-              <a href="#rewards" class="btn-hero-primary">BLOCCA IL POSTO SUPER EARLY BIRD (-35%)</a>
-              <a href="#esperienza" class="btn-hero-ghost">ESPLORA IL POD IN 3D</a>
+              <a href="#esplosione-3d" class="btn-hero-primary">ESPLORA L'ESPLOSIONE 3D DEL POD</a>
+              <a href="#rewards" class="btn-hero-ghost">BLOCCA LO SCONTO SUPER EARLY BIRD (-35%)</a>
             </div>
           </div>
 
@@ -101,7 +101,7 @@
             </div>
             <div class="hero-bottom-cell">
               <span class="stat-big">POD-S1</span>
-              <span class="stat-caption">CAPSULA INERZIALE DA 28 MM TRASFERIBILE IN 2 SECONDI TRA I DUE GUANTI</span>
+              <span class="stat-caption">8 MICRO-COMPONENTI SIGILLATI IN UNA CAPSULA DA 28 MM</span>
             </div>
             <div class="hero-bottom-cell">
               <span class="stat-big">-100 €</span>
@@ -201,12 +201,189 @@
       </div>
     </section>
 
-    <!-- ================= 02. MECCANICA DI SGANCIO A BAIONETTA 15° & HARDWARE PCB ================= -->
+    <!-- ================= 02. SCROLLYTELLING 3D EXPLODED POD TEARDOWN ================= -->
+    <section class="grid-section" id="esplosione-3d">
+      <div class="section-index-bar">
+        <div><span class="index-num">02.</span> STORYTELLING ESPLOSIONE 3D</div>
+        <div>SCORRI LA PAGINA PER SMONTARE IN TEMPO REALE GLI 8 LIVELLI INGEGNERISTICI DI GLOOVITO POD-S1</div>
+        <div>MOTORE WEBGL PBR INTERATTIVO</div>
+      </div>
+
+      <div class="teardown-scrolly-wrapper" id="teardown-scrolly">
+        <!-- STICKY LEFT 3D WEBGL STAGE WITH DYNAMIC SVG CALLOUTS -->
+        <div class="teardown-sticky-stage">
+          <div class="teardown-hud-top">
+            <div>
+              <span class="hud-kicker">ARCHITETTURA INTERNA • 8 COMPONENTI</span>
+              <h3 class="hud-active-title" id="hud-chapter-title">01. Il Monolite Sigillato IP68</h3>
+            </div>
+            <div class="hud-progress-box">
+              <span id="hud-explode-pct">APERTURA 3D: 0%</span>
+              <div class="hud-progress-track">
+                <div class="hud-progress-fill" id="hud-explode-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D VIEWPORT + DYNAMIC 3D-ANCHORED SVG CALLOUT PINS -->
+          <div class="teardown-viewport-wrap">
+            <div id="teardown-webgl-canvas" class="teardown-webgl-canvas"></div>
+            <svg id="teardown-callout-svg" class="teardown-callout-svg" viewBox="0 0 800 600" preserveAspectRatio="none"></svg>
+          </div>
+
+          <!-- INTERACTIVE CHAPTER PILLS & DRAG HINT -->
+          <div class="teardown-hud-bottom">
+            <div class="chapter-pill-bar" id="chapter-pill-bar">
+              <button class="ch-pill active" onclick="scrollToTeardownStep(0)">01. Monolite</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(1)">02. Linea Rossa</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(2)">03. Calotta CNC</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(3)">04. Tenuta IP68</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(4)">05. Scheda PCB-S1</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(5)">06. Motore Aptico &amp; LiPo</button>
+              <button class="ch-pill" onclick="scrollToTeardownStep(6)">07. Baionetta 15° &amp; Dock</button>
+            </div>
+            <span class="hud-drag-hint">TRASCINA IL MODELLO 3D PER RUOTARLO IN OGNI ISTANTE</span>
+          </div>
+        </div>
+
+        <!-- SCROLLING RIGHT NARRATIVE CHAPTERS -->
+        <div class="teardown-narrative-track">
+          <!-- STEP 0 -->
+          <article class="teardown-step active" data-step="0">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 01 DI 07 • IL SISTEMA CHIUSO</span>
+              <h3 class="step-title">Un monolite da 28 millimetri.<br /><em>11 grammi di pura meccanica.</em></h3>
+              <p class="step-body">
+                Prima di esplodere i suoi 8 componenti interni, osserva <strong>GLOOVITO POD-S1</strong> assemblato: un disco a basso profilo (`Ø 28.0 × 7.5 mm`) che sporge di appena `4.5 mm` dal dorso del guanto per non impigliarsi mai nelle tasche del cappotto o nelle cinghie dei bastoncini da sci.
+              </p>
+              <div class="step-spec-grid">
+                <div><span>DIAMETRO ESTERNO</span><strong>28.00 mm (CNC)</strong></div>
+                <div><span>SPESSORE TOTALE</span><strong>7.50 mm</strong></div>
+                <div><span>MASSA COMPLESSIVA</span><strong>11.2 grammi</strong></div>
+                <div><span>ISOLAMENTO</span><strong>IP68 (-20 °C / +50 °C)</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 1 -->
+          <article class="teardown-step" data-step="1">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 02 DI 07 • L'ELEMENTO ICONICO</span>
+              <h3 class="step-title">La <em>Linea Rossa</em> centrale.<br />Guida d'onda ottica in policarbonato.</h3>
+              <p class="step-body">
+                Il primo componente che si solleva in 3D è l'inserto diametrale <strong>Linea Rossa (`#FF3300`)</strong> posizionato esattamente sull'asse `(0,0)` (`18.0 × 1.0 mm`). Lavorato con micro-prismi interni e saldato a ultrasuoni, ha una doppia funzione: indice visivo per sentire sotto le dita l'angolo di blocco di `15°` e diffusore ottico per i 3 micro-LED sottostanti.
+              </p>
+              <div class="step-spec-grid">
+                <div><span>COORDINATA ASSE</span><strong>Centro Esatto Y = 0.00 mm</strong></div>
+                <div><span>MATERIALE</span><strong>Policarbonato Ottico UV</strong></div>
+                <div><span>GEOMETRIA</span><strong>Asola 18.0 × 1.0 mm</strong></div>
+                <div><span>FINITURA</span><strong>Satinata Vermiglio #FF3300</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 2 -->
+          <article class="teardown-step" data-step="2">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 03 DI 07 • CORAZZA ESTERNA</span>
+              <h3 class="step-title">Calotta Unibody in Alluminio <em>6061-T6</em>.<br />Ricavata dal pieno al tornio CNC.</h3>
+              <p class="step-body">
+                Sotto la Linea Rossa si separa la calotta strutturale superiore, fresata a 5 assi da una barra piena di <strong>lega aeronautica 6061-T6</strong> con smusso perimetrale diamantato a `45° × 0.6 mm` e satinatura conica radiale. Il trattamento di <strong>anodizzazione dura Tipo III</strong> (`25 µm`) canna di fucile la rende inscalfibile da lamine da sci, rocce e ghiaccio.
+              </p>
+              <div class="step-spec-grid">
+                <div><span>LEGA METALLICA</span><strong>Alluminio 6061-T6 CNC</strong></div>
+                <div><span>TRATTAMENTO</span><strong>Anodizzazione Dura 25 µm</strong></div>
+                <div><span>SPESSORE PARETE</span><strong>1.20 mm Anti-Urto</strong></div>
+                <div><span>MARCATURA</span><strong>Incisione Laser Fibra 30W</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 3 -->
+          <article class="teardown-step" data-step="3">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 04 DI 07 • IMPERMEABILITÀ TOTALE</span>
+              <h3 class="step-title">Guarnizione FKM Viton.<br /><em>Sigillo ermetico IP68 nella tormenta.</em></h3>
+              <p class="step-body">
+                A differenza della gomma comune che cristallizza sotto zero, l'anello elastomerico toroidale (`Ø 25.5 × 1.0 mm`) in <strong>Fluoroelastomero FKM (Viton)</strong> compresso al `22%` mantiene l'elasticità fino a `-40 °C`. Nessuna goccia di neve sciolta, pioggia o sudore può mai raggiungere l'elettronica.
+              </p>
+              <div class="step-spec-grid">
+                <div><span>COMPOSTO</span><strong>FKM Viton Grado Artico</strong></div>
+                <div><span>COMPRESSIONE</span><strong>22% in Sede Radiale</strong></div>
+                <div><span>RANGE TERMICO</span><strong>-40 °C fino a +120 °C</strong></div>
+                <div><span>CERTIFICAZIONE</span><strong>IP68 (Immersione 1.5 m)</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 4 -->
+          <article class="teardown-step" data-step="4">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 05 DI 07 • IL CERVELLO A 4 STRATI</span>
+              <h3 class="step-title">Scheda Madre <em>GLOOVITO-PCB-S1</em>.<br />Intelligenza neurale a 6 assi.</h3>
+              <p class="step-body">
+                Al centro dell'esplosione fluttua il circuito stampato circolare a 4 strati in finitura <strong>ENIG Oro Chimico (`Ø 24.50 mm`)</strong>:
+              </p>
+              <ul class="step-bullet-list">
+                <li><strong>Asse Equatoriale (`Y = 0.00 mm`):</strong> 3 micro-LED Hyper-Red (`D1, D2, D3`) allineati sotto la Linea Rossa centrale.</li>
+                <li><strong>Emisfero Superiore (`U1`):</strong> Modulo certificato <strong>Nordic nRF52840</strong> (ARM Cortex-M4F 64 MHz, Bluetooth 5.3 HID nativo) con antenna ceramica a `2.4 GHz` e zona di Keepout RF.</li>
+                <li><strong>Emisfero Inferiore (`U2`):</strong> IMU <strong>STMicroelectronics LSM6DSOX</strong> a 6 assi con <em>Machine Learning Core</em> integrato sul silicio che distingue in tempo reale i tocchi delle dita dalle vibrazioni dei bastoncini da sci consumando appena `0.55 mA`.</li>
+              </ul>
+              <div class="step-spec-grid">
+                <div><span> PROCESSORE BLE</span><strong>Nordic nRF52840 (BLE 5.3)</strong></div>
+                <div><span>SENSORE INERZIALE</span><strong>ST LSM6DSOX + MLC</strong></div>
+                <div><span>POWER MANAGEMENT</span><strong>TI TPS62740 (360 nA Iq)</strong></div>
+                <div><span>STACKUP PCB</span><strong>4-Layer FR4 ENIG Gold</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 5 -->
+          <article class="teardown-step" data-step="5">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 06 DI 07 • ENERGIA &amp; TATTO</span>
+              <h3 class="step-title">Attuatore Aptico LRA &amp; Cella LiPo <em>-20 °C</em>.<br />Senti il clic sul dorso della mano.</h3>
+              <p class="step-body">
+                Sotto la scheda madre lavorano in sinergia il motore <strong>Linear Resonant Actuator (`LRA Ø 8 mm`)</strong> pilotato dal chip <strong>TI DRV2605L (`U3`)</strong> e la batteria <strong>LiPo ad elettrolita artico da `80 mAh`</strong>. Ogni volta che cambi brano o avvii la GoPro con la mano chiusa in tasca, il motore LRA trasmette sul dorso della mano uno scatto meccanico nitido e inconfondibile.
+              </p>
+              <div class="step-spec-grid">
+                <div><span>FEEDBACK TATTILE</span><strong>Attuatore Lineare LRA 175 Hz</strong></div>
+                <div><span>DRIVER APTICO</span><strong>Texas Instruments DRV2605L</strong></div>
+                <div><span>BATTERIA ARTICA</span><strong>LiPo 80 mAh (-20 °C Spec)</strong></div>
+                <div><span>AUTONOMIA REALE</span><strong>14 Giorni con Singola Carica</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 6 -->
+          <article class="teardown-step" data-step="6">
+            <div class="step-card">
+              <span class="step-badge">CAPITOLO 07 DI 07 • L'INTERFACCIA MODULARE</span>
+              <h3 class="step-title">Baionetta a <em>15°</em>, Pogo-Pin Dorati &amp; Dock N52.<br />Il cambio profilo automatico.</h3>
+              <p class="step-body">
+                Alla base dello stack vedi la <strong>Scocca Inferiore trasparente alle radiofrequenze (PC/ABS)</strong> con le 2 alette di blocco a baionetta di `15°` e i <strong>4 pad dorati</strong>, sopra l'<strong>Anello Dock passivo cucito sul guanto</strong>.
+              </p>
+              <p class="step-body" style="margin-bottom: 16px;">
+                Nel dock di <strong>URBAN-01</strong> i magneti al neodimio <strong>N52</strong> espongono il polo <em>Nord</em>; nel dock di <strong>ALPINE-PRO</strong> espongono il polo <em>Sud</em>. Il sensore magnetico di Hall <strong>TI DRV5032 (`U6`)</strong> legge istantaneamente su quale guanto hai agganciato il Pod e commuta da solo tra il profilo Città e il profilo Pista + GoPro!
+              </p>
+              <div class="step-spec-grid">
+                <div><span>ANGOLO DI BLOCCO</span><strong>Rotazione Baionetta 15°</strong></div>
+                <div><span>MAGNETI DOCK</span><strong>4× Neodimio N52 Nichelati</strong></div>
+                <div><span>RICONOSCIMENTO</span><strong>Sensore di Hall TI DRV5032</strong></div>
+                <div><span>RICARICA USB-C</span><strong>4× Pogo-Pin Dorati 24K</strong></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03. FOTOGRAFIA MACRO REALE: BAIONETTA 15° & PCB ================= -->
     <section class="grid-section" id="swap-section">
       <div class="section-index-bar">
-        <div><span class="index-num">02.</span> INGEGNERIA MECCANICA &amp; PCB</div>
-        <div>INNESTO MAGNETICO A BAIONETTA DI 15° E SCHEDA MADRE A 4 STRATI GLOOVITO-PCB-S1</div>
-        <div> Ø 28.0 × 7.5 MM</div>
+        <div><span class="index-num">03.</span> FOTOGRAFIA MACRO HARDWARE</div>
+        <div>DAL MODELLO 3D ALLA REALTÀ FISICA: L'INNESTO A 15° E LA SCHEDA A 4 STRATI</div>
+        <div>ZERO FILI NELLE DITA</div>
       </div>
 
       <div class="split-manifesto">
@@ -260,18 +437,18 @@
       </div>
     </section>
 
-    <!-- ================= 03. VERO STUDIO 3D WEBGL INTERATTIVO & SIMULATORE GESTI ================= -->
+    <!-- ================= 04. SIMULATORE INTERATTIVO DEI 5 GESTI & MINI STUDIO 3D ================= -->
     <section class="grid-section" id="esperienza">
       <div class="section-index-bar">
-        <div><span class="index-num">03.</span> STUDIO 3D WEBGL &amp; GESTI</div>
-        <div>ESPLORA IL MODELLO 3D IN TEMPO REALE, APRI LA VISTA ESPLOSA E PROVA I 5 COMANDI</div>
-        <div>MOTORE 3D THREE.JS PBR</div>
+        <div><span class="index-num">04.</span> SIMULATORE GESTI IN TEMPO REALE</div>
+        <div>CLICCA SUI 5 COMANDI BLUETOOTH HID PER TESTARE LA RISPOSTA DEL POD 3D</div>
+        <div>TASTI RAPIDI 1–5</div>
       </div>
 
       <div class="hardware-workbench">
         <div class="pod-cad-stage reveal-up">
           <div class="webgl-stage-header">
-            <span>MODELLO CAD 3D: GLOOVITO POD-S1 (Ø 28.0 × 7.5 MM)</span>
+            <span>TEST BANCO PROVA 3D: GLOOVITO POD-S1</span>
             <span id="cad-angle-readout">TRASCINA PER RUOTARE IN 3D A 360°</span>
           </div>
 
@@ -284,7 +461,7 @@
               VISTA ASSEMBLATA 3D
             </button>
             <button class="webgl-btn" id="btn-3d-exploded" onclick="set3DMode('exploded')">
-              VISTA ESPLOSA (4 LIVELLI)
+              VISTA ESPLOSA RAPIDA
             </button>
             <button class="webgl-btn" id="btn-3d-bayonet" onclick="set3DMode('bayonet')">
               SIMULA INNESTO 15°
@@ -370,10 +547,10 @@
       </div>
     </section>
 
-    <!-- ================= 04. FLAT-LAY ECOSISTEMA 2-IN-1 ================= -->
+    <!-- ================= 05. FLAT-LAY ECOSISTEMA 2-IN-1 ================= -->
     <section class="grid-section" id="ecosistema">
       <div class="section-index-bar">
-        <div><span class="index-num">04.</span> ECOSISTEMA 2-IN-1</div>
+        <div><span class="index-num">05.</span> ECOSISTEMA 2-IN-1</div>
         <div>DOTAZIONE COMPLETA DEL FOUNDER PACK: URBAN-01 + POD-S1 + ALPINE-PRO</div>
         <div>ZERO FILI NELLE DITA</div>
       </div>
@@ -410,10 +587,10 @@
       </div>
     </section>
 
-    <!-- ================= 05. ROADMAP & SONDAGGIO CO-CREAZIONE BACKER ================= -->
+    <!-- ================= 06. ROADMAP & SONDAGGIO CO-CREAZIONE BACKER ================= -->
     <section class="grid-section" id="roadmap">
       <div class="section-index-bar">
-        <div><span class="index-num">05.</span> ROADMAP &amp; CO-CREAZIONE</div>
+        <div><span class="index-num">06.</span> ROADMAP &amp; CO-CREAZIONE</div>
         <div>CRONOPROGRAMMA DI SVILUPPO INDUSTRIALE E SONDAGGIO FUNZIONI COMMUNITY</div>
         <div>COSTRUITO CON I BACKER</div>
       </div>
@@ -510,10 +687,10 @@
       </div>
     </section>
 
-    <!-- ================= 06. KICKSTARTER REWARD TIERS ================= -->
+    <!-- ================= 07. KICKSTARTER REWARD TIERS ================= -->
     <section class="grid-section" id="rewards">
       <div class="section-index-bar">
-        <div><span class="index-num">06.</span> REWARD KICKSTARTER</div>
+        <div><span class="index-num">07.</span> REWARD KICKSTARTER</div>
         <div>BLOCCA OGGI A 0 € IL TUO POSTO SUPER EARLY BIRD PER IL GIORNO DEL LANCIO</div>
         <div>NESSUN PAGAMENTO OGGI</div>
       </div>
